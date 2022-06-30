@@ -1,10 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bohemia Interactive job assignment 02
+
+Code for the second of two assignments for a front-end React developer position at Bohemia Interactive for the Back Office HR tool.
+
+## Assignment
+
+Create a PoC of the e-commerce solution. One of our clients wants to have an application where he could sell images and artworks. He gave us designs and we need to transfer his vision to real code.
+
+Assignment details are in [assignment.md](assignment.md).
 
 ## Getting Started
 
-First, run the development server:
+Install packages with:
 
 ```bash
+pnpm install
+# or
+npm install
+# or
+yarn install
+```
+
+Run the development server:
+
+```bash
+pnpm run dev
+# or
 npm run dev
 # or
 yarn dev
@@ -12,23 +32,15 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
+  - [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import) for import order
+  - [`eslint-plugin-json-files`](https://github.com/kellyselden/eslint-plugin-json-files) for [package.json](package.json) order
+- [Tailwind CSS](https://tailwindcss.com/) + [PostCSS](https://postcss.org/) + [autoprefixer](https://github.com/postcss/autoprefixer)
+- [SpinKit](https://github.com/tobiasahlin/SpinKit) loading spinner
+- [pnpm](https://pnpm.io/) (optional but recommended instead of NPM)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The site honors `prefers-color-scheme` because I like your eyes.
