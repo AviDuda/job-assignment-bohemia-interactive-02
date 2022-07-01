@@ -133,7 +133,7 @@ After clicking "Add to cart" in the cart icon in the header should appear the ba
 
 Products should be paginated. On one page should be 6 items. The pagination should show the current page. Hide the 'prev' arrow on the first page and hide the 'next' arrow on the last page
 
-## 5. Sorting
+### 5. Sorting
 
 Implement 2 types of sorting: alphabetically or by price. Use basic HTML select. Clicking on arrows should change the order to 'ascending' or 'descending'.
 
