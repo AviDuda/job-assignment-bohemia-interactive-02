@@ -32,6 +32,10 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Updating store products
+
+If you want to quickly randomize data, run `pnpm run convert` (or equivalent). If you want to dig deeper into this, docs are in [lib/convert-data.ts](./lib/convert-data.ts).
+
 ## Stack
 
 - [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
@@ -43,4 +47,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [SpinKit](https://github.com/tobiasahlin/SpinKit) loading spinner
 - [pnpm](https://pnpm.io/) (optional but recommended instead of NPM)
 
-The site honors `prefers-color-scheme` because I like your eyes.
+The site will honor `prefers-color-scheme` because I like your eyes. Not yet though, sorry!
