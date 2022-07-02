@@ -1,7 +1,6 @@
-import Image from "next/image";
-
 import { StoreProduct } from "../api";
 
+import { BlurImage } from "./BlurImage";
 import Button from "./Button";
 
 interface ProductCardProps {
@@ -15,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className={`relative h-96 w-full`}
                 style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
             >
-                <Image src={product.image.medium} alt={product.title} layout="fill" objectFit="contain" />
+                <BlurImage src={product.image.medium} alt={product.title} layout="fill" objectFit="contain" />
                 {product.bestseller && (
                     <div className="absolute top-0 left-0 bg-white px-2 py-1 text-center text-xl">Best Seller</div>
                 )}

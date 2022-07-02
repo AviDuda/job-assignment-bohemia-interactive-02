@@ -7,12 +7,13 @@ import FeaturedProduct from "../src/components/FeaturedProduct";
 import Filters from "../src/components/Filters";
 import LoadingIndicator from "../src/components/LoadingIndicator";
 import PageWrapper from "../src/components/PageWrapper";
+import Pagination from "../src/components/Pagination";
 import ProductCard from "../src/components/ProductCard";
 import { getRandom } from "../src/utils";
 
 const PRODUCTS_PER_PAGE = 9;
 
-export type PeopleAlsoBuy = Pick<StoreProduct, "id" | "title" | "slug"> & {
+export type PeopleAlsoBuy = Pick<StoreProduct, "id" | "title" | "slug" | "main_color"> & {
     image: StoreProduct["image"]["small"];
 };
 
@@ -74,6 +75,7 @@ export const getStaticProps: GetStaticProps<HomepageProps> = async (_context) =>
                 title: product.title,
                 slug: product.slug,
                 image: product.image.small,
+                main_color: product.main_color,
             });
         }
 
@@ -125,7 +127,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                         <FeaturedProduct featured={initialData.featured} peopleAlsoBuy={initialData.peopleAlsoBuy} />
                         <Filters tags={initialData.tags} filters={{}}>
                             <>
-                                <section className="grid place-content-center gap-12 md:grid-cols-2 xl:grid-cols-3">
+                                <section className="grid place-content-center gap-12 sm:grid-cols-2 xl:grid-cols-3">
                                     {initialData.products.map((product) => (
                                         <ProductCard key={product.id} product={product} />
                                     ))}
@@ -133,39 +135,10 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                             </>
                         </Filters>
                         {initialData.products.length < initialData.count && (
-                            <div className="flex items-center justify-center gap-4">
-                                <svg
-                                    width="13"
-                                    height="20"
-                                    viewBox="0 0 13 20"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M11 2L3 10L11 18" stroke="black" strokeWidth="3" />
-                                </svg>
-                                {[...Array(Math.ceil(initialData.count / initialData.products.length)).keys()].map(
-                                    (page) => (
-                                        <a
-                                            href={`/page/${page + 1}`}
-                                            className={`text-3xl hover:font-semibold hover:text-current ${
-                                                page > 0 ? "text-gray-400" : "font-semibold"
-                                            }`}
-                                            key={page + 1}
-                                        >
-                                            {page + 1}
-                                        </a>
-                                    ),
-                                )}
-                                <svg
-                                    width="13"
-                                    height="20"
-                                    viewBox="0 0 13 20"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M2 2L10 10L2 18" stroke="black" strokeWidth="3" />
-                                </svg>
-                            </div>
+                            <Pagination
+                                total={Math.ceil(initialData.count / initialData.products.length)}
+                                current={1}
+                            />
                         )}
                     </>
                 )}

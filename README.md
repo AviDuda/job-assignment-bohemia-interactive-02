@@ -40,6 +40,8 @@ If you want to quickly randomize data, run `pnpm run convert` (or equivalent). I
 
 - [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 - [TypeScript](https://www.typescriptlang.org/)
+- [unstated-next](https://github.com/jamiebuilds/unstated-next) for nicer React Context
+- [clsx](https://github.com/lukeed/clsx) for conditional classNames
 - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
   - [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import) for import order
   - [`eslint-plugin-json-files`](https://github.com/kellyselden/eslint-plugin-json-files) for [package.json](package.json) order

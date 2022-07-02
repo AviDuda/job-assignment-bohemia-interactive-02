@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getRandom<T>(arr: T[]) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
