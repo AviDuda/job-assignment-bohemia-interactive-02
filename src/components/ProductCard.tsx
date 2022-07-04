@@ -18,7 +18,15 @@ export default function ProductCard({ product }: ProductCardProps) {
                 className={`relative h-96 w-full`}
                 style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
             >
-                <Image src={product.image.medium} alt={product.title} layout="fill" objectFit="contain" />
+                <Image
+                    src={product.image.medium}
+                    alt={product.title}
+                    title={`Image by ${product.user.first_name} ${product.user.last_name}${
+                        typeof product.user.username === "string" ? ` (${product.user.username})` : ""
+                    }`}
+                    layout="fill"
+                    objectFit="contain"
+                />
                 {product.bestseller && (
                     <div className="absolute top-0 left-0 bg-white px-2 py-1 text-center text-xl dark:bg-black">
                         Best Seller

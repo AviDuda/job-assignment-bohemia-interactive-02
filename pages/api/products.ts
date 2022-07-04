@@ -15,7 +15,7 @@ export const PEXELS_DATA_PATH = path.join(process.cwd(), "data/pexels_data.json"
 export const STORE_DATA_PATH = path.join(process.cwd(), "data/store_data.json");
 
 export function getMinimalProduct(product: StoreProduct): MinimalProduct {
-    const { id, title, price, bestseller, width, height, main_color, image, tags } = product;
+    const { id, title, price, bestseller, width, height, main_color, image, tags, user } = product;
     return {
         id,
         title,
@@ -26,6 +26,11 @@ export function getMinimalProduct(product: StoreProduct): MinimalProduct {
         main_color,
         image,
         tags,
+        user: {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            username: user.username,
+        },
     };
 }
 

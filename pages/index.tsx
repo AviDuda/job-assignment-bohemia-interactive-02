@@ -18,6 +18,7 @@ import { getFilteredProducts, getMinimalProduct, getStoreData } from "./api/prod
 
 export type PeopleAlsoBuy = Pick<StoreProduct, "id" | "title" | "slug" | "main_color"> & {
     image: StoreProduct["image"]["small"];
+    user: MinimalProduct["user"];
 };
 
 interface HomepageProps {
@@ -93,6 +94,11 @@ export const getServerSideProps: GetServerSideProps<HomepageProps> = async ({ qu
                 slug: product.slug,
                 image: product.image.small,
                 main_color: product.main_color,
+                user: {
+                    first_name: product.user.first_name,
+                    last_name: product.user.last_name,
+                    username: product.user.username,
+                },
             });
         }
 

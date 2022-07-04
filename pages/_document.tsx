@@ -9,7 +9,7 @@ export default function Document() {
                     rel="stylesheet"
                 />
             </Head>
-            <body className="min-h-screen break-words transition-colors duration-300 scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 motion-reduce:transition-none dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
+            <body className="min-h-screen break-words bg-white text-black transition-colors duration-300 scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 motion-reduce:transition-none dark:bg-zinc-800 dark:text-white dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
                 <Main />
                 <NextScript />
             </body>

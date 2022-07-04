@@ -26,7 +26,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
 
     return (
         <>
-            <div className="flex flex-col bg-white px-8 pb-16 text-black dark:bg-zinc-800 dark:text-white">
+            <div className="flex flex-col px-8 pb-16">
                 <Meta title={title} description={description} />
 
                 <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-inherit dark:border-zinc-700 lg:h-32">
@@ -51,6 +51,20 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                     {children}
                 </main>
             </div>
+
+            <footer className="bg-gray-200 py-8 text-right dark:bg-zinc-900">
+                <div className="container">
+                    Photos provided by{" "}
+                    <a
+                        href="https://www.pexels.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-gray-500 hover:text-gray-600 dark:text-zinc-500 dark:hover:text-zinc-400"
+                    >
+                        Pexels
+                    </a>
+                </div>
+            </footer>
             {currentModal && (
                 <div
                     className={clsx(

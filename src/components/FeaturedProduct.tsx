@@ -32,6 +32,9 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                 <Image
                     src={featured.image.large}
                     alt={featured.title}
+                    title={`Image by ${featured.user.first_name} ${featured.user.last_name}${
+                        typeof featured.user.username === "string" ? ` (${featured.user.username})` : ""
+                    }`}
                     layout="fill"
                     objectFit="cover"
                     priority={true}
@@ -61,7 +64,13 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                         key={product.id}
                                         src={product.image}
                                         alt={product.title}
-                                        title={product.title}
+                                        title={`Image of "${product.title}" by ${product.user.first_name} ${
+                                            product.user.last_name
+                                        }${
+                                            typeof product.user.username === "string"
+                                                ? ` (${product.user.username})`
+                                                : ""
+                                        }`}
                                         width={117}
                                         height={147}
                                         objectFit="cover"
