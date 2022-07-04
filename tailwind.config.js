@@ -8,6 +8,7 @@ module.exports = {
     plugins: [
         require("@tailwindcss/typography"),
         require("@tailwindcss/forms"),
+        require("tailwind-scrollbar"),
         plugin(function ({ addComponents, theme }) {
             // Override select's caret color as it can't be customized in @tailwindcss/forms
             // see https://github.com/tailwindlabs/tailwindcss-forms/issues/17

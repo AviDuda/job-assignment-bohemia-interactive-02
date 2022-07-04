@@ -32,6 +32,7 @@ specifiers:
   sharp: ^0.30.7
   sort-package-json: ^1.57.0
   spinkit: ^2.0.1
+  tailwind-scrollbar: ^1.3.1
   tailwindcss: ^3.1.4
   ts-node: ^10.8.1
   typescript: 4.7.4
@@ -72,6 +73,7 @@ devDependencies:
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.11_prettier@2.7.1
   sort-package-json: 1.57.0
+  tailwind-scrollbar: 1.3.1_ts-node@10.8.1
   tailwindcss: 3.1.4_ts-node@10.8.1
   ts-node: 10.8.1_qiyc72axg2v44xl4yovan2v55u
   typescript: 4.7.4
@@ -3124,6 +3126,14 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /tailwind-scrollbar/1.3.1_ts-node@10.8.1:
+    resolution: {integrity: sha512-FeYuLxLtCRMO4PmjPJCzm5wQouFro2BInZXKPxqg54DR/55NAHoS8uNYWMiRG5l6qsLkWBfVEM34gq2XAQUwVg==}
+    dependencies:
+      tailwindcss: 3.1.4_ts-node@10.8.1
+    transitivePeerDependencies:
+      - ts-node
+    dev: true
 
   /tailwindcss/3.1.4_ts-node@10.8.1:
     resolution: {integrity: sha512-NrxbFV4tYsga/hpWbRyUfIaBrNMXDxx5BsHgBS4v5tlyjf+sDsgBg5m9OxjrXIqAS/uR9kicxLKP+bEHI7BSeQ==}

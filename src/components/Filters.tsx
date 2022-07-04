@@ -130,9 +130,9 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                             </a>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-scroll">
+                    <div className="flex-1 overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
                         <h4 className="hidden pb-11 text-xl font-bold lg:block">Category</h4>
-                        <div className="max-h-[60vh] overflow-scroll lg:max-h-[80vh]">
+                        <div className="max-h-[60vh] overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 lg:max-h-[80vh]">
                             {tags.map((tag) => (
                                 <Checkbox
                                     key={tag}
