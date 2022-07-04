@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { MouseEvent, ReactNode } from "react";
 
+import { CartContext } from "../context/CartContext";
 import { ModalContext } from "../context/ModalContext";
 
 import Cart from "./Cart";
@@ -16,6 +17,7 @@ interface MetaProps {
 
 export default function PageWrapper({ title, description, children }: MetaProps) {
     const { currentModal, modalHasOverlay, toggleModal, closeModal } = ModalContext.useContainer();
+    const cart = CartContext.useContainer();
 
     function handleCartOpenChange(e: MouseEvent) {
         e.preventDefault();
@@ -27,7 +29,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
             <div className="flex flex-col bg-white px-8 pb-16">
                 <Meta title={title} description={description} />
 
-                <header className="container flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 lg:h-32">
+                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-white lg:h-32">
                     <div className="pt-5">
                         <SvgCompanyLogo className="h-5 lg:h-6" />
                     </div>
@@ -39,7 +41,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                     >
                         <SvgCartIcon />
                         <span className="absolute left-7 top-7 bg-black px-1 pb-1 text-center text-base font-bold leading-4 tracking-widest text-white lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
-                            1
+                            {cart.cartProducts.size}
                         </span>
                     </a>
                 </header>
@@ -52,7 +54,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
             {currentModal && (
                 <div
                     className={clsx(
-                        "fixed top-0 left-0 z-10 h-full w-full",
+                        "fixed top-0 left-0 z-modal-overlay h-full w-full",
                         modalHasOverlay && "bg-black opacity-20 transition-opacity",
                     )}
                     onClick={() => closeModal()}

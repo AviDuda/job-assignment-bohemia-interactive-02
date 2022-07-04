@@ -119,7 +119,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex",
                         currentModal === "filters" &&
-                            "fixed top-[10%] left-0 z-20 mb-24 !flex h-full w-full max-w-5xl overscroll-contain bg-white px-10 pt-5",
+                            "fixed top-24 left-0 z-modal mb-24 !flex h-full w-full max-w-5xl overscroll-contain bg-white px-10 pt-5",
                     )}
                 >
                     <div className="static bg-white">

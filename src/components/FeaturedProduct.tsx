@@ -1,5 +1,6 @@
 import { PeopleAlsoBuy } from "../../pages";
 import { MinimalProduct, StoreProduct } from "../apiTypes";
+import { CartContext } from "../context/CartContext";
 
 import { BlurImage } from "./BlurImage";
 import Button from "./Button";
@@ -10,11 +11,21 @@ interface FeaturedProductProps {
 }
 
 export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedProductProps) {
+    const { addToCart } = CartContext.useContainer();
+
     return (
         <section className="border-b-2 border-gray-200 pb-16">
             <div className="my-6 flex flex-wrap place-content-center place-items-center gap-4">
                 <h2 className="flex-grow break-words text-center text-3xl font-bold lg:text-left">{featured.title}</h2>
-                <Button href="#">ADD TO CART</Button>
+                <Button
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        addToCart(featured);
+                    }}
+                >
+                    ADD TO CART
+                </Button>
             </div>
             <div className="relative mb-12 h-[553px] w-full">
                 <BlurImage

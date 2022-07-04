@@ -30,6 +30,11 @@ module.exports = {
             fontFamily: {
                 sans: ["Archivo", ...defaultTheme.fontFamily.sans],
             },
+            zIndex: {
+                header: 10,
+                modal: 20,
+                "modal-overlay": 15,
+            },
         },
     },
 };

@@ -1,4 +1,5 @@
 import { MinimalProduct } from "../apiTypes";
+import { CartContext } from "../context/CartContext";
 
 import { BlurImage } from "./BlurImage";
 import Button from "./Button";
@@ -8,6 +9,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+    const cart = CartContext.useContainer();
+
     return (
         <article className="flex flex-col gap-2">
             <div
@@ -18,7 +21,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {product.bestseller && (
                     <div className="absolute top-0 left-0 bg-white px-2 py-1 text-center text-xl">Best Seller</div>
                 )}
-                <Button href="#" className="absolute bottom-0 left-0 w-full px-4 pb-4">
+                <Button
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        cart.addToCart(product);
+                    }}
+                    className="absolute bottom-0 left-0 w-full px-4 pb-4"
+                >
                     ADD TO CART
                 </Button>
             </div>
