@@ -28,7 +28,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { faker } from "@faker-js/faker";
 
-import { PEXELS_DATA_PATH, STORE_DATA_PATH, PexelsPhoto, StoreProduct, JsonData } from "../src/api";
+import { JsonData, PEXELS_DATA_PATH, STORE_DATA_PATH } from "../pages/api/products";
+import { PexelsPhoto, StoreProduct } from "../src/apiTypes";
 
 const pexelsData: JsonData<PexelsPhoto[]> = JSON.parse(readFileSync(PEXELS_DATA_PATH, "utf-8"));
 const data = new Set<StoreProduct>();

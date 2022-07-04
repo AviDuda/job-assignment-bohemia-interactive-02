@@ -1,10 +1,10 @@
-import { StoreProduct } from "../api";
+import { MinimalProduct } from "../apiTypes";
 
 import { BlurImage } from "./BlurImage";
 import Button from "./Button";
 
 interface ProductCardProps {
-    product: Pick<StoreProduct, "title" | "bestseller" | "image" | "price" | "main_color" | "tags">;
+    product: MinimalProduct;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {product.bestseller && (
                     <div className="absolute top-0 left-0 bg-white px-2 py-1 text-center text-xl">Best Seller</div>
                 )}
-                <Button href="#" className="absolute bottom-0 left-0 w-full pb-4">
+                <Button href="#" className="absolute bottom-0 left-0 w-full px-4 pb-4">
                     ADD TO CART
                 </Button>
             </div>

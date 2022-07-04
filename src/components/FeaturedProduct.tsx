@@ -1,5 +1,5 @@
 import { PeopleAlsoBuy } from "../../pages";
-import { MinimalProduct, StoreProduct } from "../api";
+import { MinimalProduct, StoreProduct } from "../apiTypes";
 
 import { BlurImage } from "./BlurImage";
 import Button from "./Button";

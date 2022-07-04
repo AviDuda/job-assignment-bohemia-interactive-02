@@ -3,5 +3,5 @@ interface ErrorMessageProps {
 }
 
 export default function ErrorMessage({ message }: ErrorMessageProps) {
-    return <div className="bg-red-600 p-4">{message}</div>;
+    return <div className="h-min bg-red-700 px-16 py-4 text-2xl text-gray-200">{message}</div>;
 }

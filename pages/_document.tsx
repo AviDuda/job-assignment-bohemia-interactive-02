@@ -9,7 +9,7 @@ export default function Document() {
                     rel="stylesheet"
                 />
             </Head>
-            <body className="min-h-screen transition-colors duration-300 motion-reduce:transition-none">
+            <body className="min-h-screen break-words transition-colors duration-300 motion-reduce:transition-none">
                 <Main />
                 <NextScript />
             </body>

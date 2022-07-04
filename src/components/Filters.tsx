@@ -1,7 +1,10 @@
 import clsx from "clsx";
-import { MouseEvent, ReactNode, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { ChangeEvent, MouseEvent, ReactNode, useEffect, useRef } from "react";
 
-import { StoreProduct } from "../api";
+import { FilterQuery, parseApiQuery, SortDirection, SortField } from "../api";
+import { StoreProduct } from "../apiTypes";
 import { ModalContext } from "../context/ModalContext";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { PRICE_FILTER } from "../utils";
@@ -11,13 +14,14 @@ import SvgCloseIcon from "./svg/SvgCloseIcon";
 import SvgFilterIcon from "./svg/SvgFilterIcon";
 import SvgSortIcon from "./svg/SvgSortIcon";
 
-interface ProductListProps {
+export interface ProductListProps {
     tags: StoreProduct["tags"];
-    filters: Record<string, unknown>; // TODO
+    filters: FilterQuery;
     children: ReactNode;
 }
 
-export default function Filters({ tags, filters: _filters, children }: ProductListProps) {
+export default function Filters({ tags, filters, children }: ProductListProps) {
+    const router = useRouter();
     const { currentModal, showModal, closeModal } = ModalContext.useContainer();
     const { innerWidth, setShouldTrackResize } = useWindowSize(false);
 
@@ -25,6 +29,8 @@ export default function Filters({ tags, filters: _filters, children }: ProductLi
     const filtersParentRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
+        // Checks if the filter modal should be closed when resizing the window
+
         if (!filtersRef.current) return;
         setShouldTrackResize(currentModal === "filters");
         if (currentModal !== "filters") return;
@@ -39,10 +45,36 @@ export default function Filters({ tags, filters: _filters, children }: ProductLi
         show ? showModal("filters", true) : closeModal();
     }
 
+    function handleSortFieldChange(e: ChangeEvent<HTMLSelectElement>) {
+        const newQuery = { ...router.query };
+        delete newQuery.page;
+        e.target.value === "default" ? delete newQuery.field : (newQuery.field = e.target.value);
+        router.push({ query: newQuery }, undefined, {
+            scroll: false,
+            shallow: true,
+        });
+    }
+
+    /** Sets query params for multiple choice checkboxes */
+    function handleCheckboxChange({ field, value, checked }: { field: string; value: string; checked: boolean }) {
+        const query = new URLSearchParams(router.query as Record<string, string>);
+        let allValues = (query.get(field) ?? "").split(",");
+        if (checked) {
+            allValues.push(value);
+        } else {
+            allValues = allValues.filter((queryVal) => queryVal !== value);
+        }
+        allValues = allValues.filter((val) => val !== "");
+        const joinedValues = allValues.join(",");
+        joinedValues === "" ? query.delete(field) : query.set(field, joinedValues);
+        query.delete("page");
+        router.push({ query: query.toString() }, undefined, { scroll: false, shallow: true });
+    }
+
     return (
         <section className="py-16">
-            <div className="flex items-center justify-between gap-8">
-                <div>
+            <div className="flex flex-wrap items-center justify-between gap-8">
+                <div className="flex-1">
                     <span className="text-3xl font-bold">Photography</span>
                     <span className="pl-4 pr-[0.6rem] text-4xl font-semibold">/ </span>
                     <span className="text-3xl text-gray-400">Premium Photos</span>
@@ -51,12 +83,31 @@ export default function Filters({ tags, filters: _filters, children }: ProductLi
                     <SvgFilterIcon />
                 </a>
                 <div className="hidden items-center lg:flex">
-                    <SvgSortIcon />
-                    <span className="pl-2 pr-4 text-xl text-gray-400">Sort By</span>
-                    <select
-                        name="price"
-                        className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black"
+                    <Link
+                        href={{
+                            query: {
+                                ...router.query,
+                                direction:
+                                    filters.direction === SortDirection.Ascending
+                                        ? SortDirection.Descending
+                                        : SortDirection.Ascending,
+                            },
+                        }}
+                        scroll={false}
+                        shallow={true}
                     >
+                        <a title={`Sorting `} className="p-2">
+                            <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
+                        </a>
+                    </Link>
+                    <span className="pr-4 text-xl text-gray-400">Sort By</span>
+                    <select
+                        name="field"
+                        className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black"
+                        value={filters.field ?? SortField.Default}
+                        onChange={handleSortFieldChange}
+                    >
+                        <option value="default">Default</option>
                         <option value="price">Price</option>
                         <option value="title">Title</option>
                     </select>
@@ -81,22 +132,32 @@ export default function Filters({ tags, filters: _filters, children }: ProductLi
                     </div>
                     <div className="flex-1 overflow-scroll">
                         <h4 className="hidden pb-11 text-xl font-bold lg:block">Category</h4>
-                        {tags.map((tag) => (
-                            <Checkbox
-                                key={tag}
-                                label={tag}
-                                labelClassName="capitalize"
-                                onChange={(e) => console.log(tag, e.target.checked)}
-                            />
-                        ))}
-                        <hr className="h-0.5 w-3/5 bg-gray-300 lg:hidden" />
+                        <div className="max-h-[60vh] overflow-scroll lg:max-h-[80vh]">
+                            {tags.map((tag) => (
+                                <Checkbox
+                                    key={tag}
+                                    label={tag}
+                                    labelClassName="capitalize"
+                                    checked={filters.tags.includes(tag)}
+                                    onChange={(e) =>
+                                        handleCheckboxChange({ field: "tags", value: tag, checked: e.target.checked })
+                                    }
+                                />
+                            ))}
+                        </div>
+                        <hr className="mt-10 h-0.5 w-3/5 bg-gray-300 lg:hidden" />
                         <h4 className="pt-8 pb-11 text-4xl font-bold lg:mt-0 lg:text-xl">Price range</h4>
-                        {PRICE_FILTER.map((priceFilter) => (
+                        {Object.entries(PRICE_FILTER).map(([priceValue, priceFilter]) => (
                             <Checkbox
-                                key={priceFilter.value}
+                                key={priceValue}
                                 label={priceFilter.name}
+                                checked={filters.prices.includes(priceValue)}
                                 onChange={(e) =>
-                                    console.log(`Price filter ${priceFilter.value} changed`, e.target.checked)
+                                    handleCheckboxChange({
+                                        field: "prices",
+                                        value: priceValue,
+                                        checked: e.target.checked,
+                                    })
                                 }
                             />
                         ))}
