@@ -32,7 +32,7 @@ export default function Cart({ onCartOpenChange }: CartProps) {
             <a href="#" onClick={onCartOpenChange} className="self-end">
                 <SvgCloseIcon />
             </a>
-            <div className="flex flex-col gap-8 overflow-auto border-b-2 border-b-gray-300 pb-8 scrollbar-thin scrollbar-track-gray-200  scrollbar-thumb-gray-400 dark:border-b-zinc-700 dark:scrollbar-thumb-zinc-700  dark:scrollbar-track-zinc-900 sm:overflow-auto">
+            <div className="flex flex-col gap-8 overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 sm:overflow-auto">
                 {cartEntries.length === 0 && (
                     <div className="text-center text-xl font-bold text-gray-500 dark:text-zinc-400">
                         Ready to go shopping?
@@ -50,17 +50,21 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                     </div>
                 ))}
             </div>
-            <Button
-                href="#"
-                invert={true}
-                className="mt-auto sm:mt-0"
-                onClick={(e) => {
-                    e.preventDefault();
-                    cart.clearCart();
-                }}
-            >
-                CLEAR
-            </Button>
+            {cartEntries.length > 0 && (
+                <div className="mt-auto mt-auto border-t-2 border-t-gray-300 pt-8 dark:border-t-zinc-700 sm:mt-0">
+                    <Button
+                        href="#"
+                        invert={true}
+                        className="block"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            cart.clearCart();
+                        }}
+                    >
+                        CLEAR
+                    </Button>
+                </div>
+            )}
         </div>
     );
 }
