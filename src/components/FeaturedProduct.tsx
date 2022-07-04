@@ -1,8 +1,9 @@
+import Image from "next/image";
+
 import { PeopleAlsoBuy } from "../../pages";
 import { MinimalProduct, StoreProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
 
-import { BlurImage } from "./BlurImage";
 import Button from "./Button";
 
 interface FeaturedProductProps {
@@ -28,7 +29,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                 </Button>
             </div>
             <div className="relative mb-12 h-[553px] w-full">
-                <BlurImage
+                <Image
                     src={featured.image.large}
                     alt={featured.title}
                     layout="fill"
@@ -56,7 +57,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                             <h3 className="pb-7 text-xl font-bold leading-6">People also buy</h3>
                             <div className="flex justify-center gap-8 lg:justify-end">
                                 {peopleAlsoBuy.map((product) => (
-                                    <BlurImage
+                                    <Image
                                         key={product.id}
                                         src={product.image}
                                         alt={product.title}
