@@ -15,7 +15,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
     const { addToCart } = CartContext.useContainer();
 
     return (
-        <section className="border-b-2 border-gray-200 pb-16">
+        <section className="border-b-2 border-gray-200 pb-16 dark:border-zinc-700">
             <div className="my-6 flex flex-wrap place-content-center place-items-center gap-4">
                 <h2 className="flex-grow break-words text-center text-3xl font-bold lg:text-left">{featured.title}</h2>
                 <Button
@@ -37,17 +37,17 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     priority={true}
                     style={{ backgroundColor: `rgb(${featured.main_color.join(", ")})` }}
                 />
-                <div className="absolute bottom-0 left-0 bg-white p-4 text-xl font-bold text-black sm:px-14">
+                <div className="absolute bottom-0 left-0 bg-white p-4 text-xl font-bold text-black dark:bg-black dark:text-white sm:px-14">
                     Photo of the day
                 </div>
             </div>
             <div className="grid justify-between gap-8 lg:grid-cols-2">
                 <div>
                     <h3 className="pb-2 text-xl font-bold leading-6">About the {featured.title}</h3>
-                    <h4 className="pb-3 text-xl font-bold capitalize leading-6 text-gray-600">
+                    <h4 className="pb-3 text-xl font-bold capitalize leading-6 text-gray-600 dark:text-zinc-400">
                         {featured.tags[0] ?? null}
                     </h4>
-                    <div className="prose-lg whitespace-pre-wrap leading-normal text-gray-600/90">
+                    <div className="prose-lg whitespace-pre-wrap leading-normal text-gray-600/90 dark:text-zinc-400">
                         {featured.description}
                     </div>
                 </div>
@@ -73,7 +73,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     )}
                     <div>
                         <h3 className="pb-2 text-xl font-bold leading-6">Details</h3>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-zinc-400">
                             Size: {featured.width} x {featured.height} pixels
                         </p>
                     </div>

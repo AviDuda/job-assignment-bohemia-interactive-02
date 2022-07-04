@@ -20,7 +20,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             >
                 <Image src={product.image.medium} alt={product.title} layout="fill" objectFit="contain" />
                 {product.bestseller && (
-                    <div className="absolute top-0 left-0 bg-white px-2 py-1 text-center text-xl">Best Seller</div>
+                    <div className="absolute top-0 left-0 bg-white px-2 py-1 text-center text-xl dark:bg-black">
+                        Best Seller
+                    </div>
                 )}
                 <Button
                     href="#"
@@ -34,11 +36,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </Button>
             </div>
             <p className="text-xl font-bold" title={product.tags.join(", ")}>
-                <span className="capitalize text-gray-600">{product.tags[0]}</span>
-                {product.tags.length > 1 && <span className="text-gray-300"> + {product.tags.length - 1} more</span>}
+                <span className="capitalize text-gray-600 dark:text-zinc-400">{product.tags[0]}</span>
+                {product.tags.length > 1 && (
+                    <span className="text-gray-300 dark:text-zinc-600"> + {product.tags.length - 1} more</span>
+                )}
             </p>
             <h3 className="text-4xl font-bold">{product.title}</h3>
-            <p className="text-3xl text-gray-600">${product.price.toFixed(2)} </p>
+            <p className="text-3xl text-gray-600 dark:text-zinc-400">${product.price.toFixed(2)} </p>
         </article>
     );
 }

@@ -77,7 +77,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                 <div className="flex-1">
                     <span className="text-3xl font-bold">Photography</span>
                     <span className="pl-4 pr-[0.6rem] text-4xl font-semibold">/ </span>
-                    <span className="text-3xl text-gray-400">Premium Photos</span>
+                    <span className="text-3xl text-gray-400 dark:text-zinc-400">Premium Photos</span>
                 </div>
                 <a href="#" className="lg:hidden" aria-label="Show filters" onClick={(e) => handleModalChange(e, true)}>
                     <SvgFilterIcon />
@@ -96,14 +96,14 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                         scroll={false}
                         shallow={true}
                     >
-                        <a title={`Sorting `} className="p-2">
+                        <a title="Change sorting direction" className="p-2">
                             <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
                         </a>
                     </Link>
-                    <span className="pr-4 text-xl text-gray-400">Sort By</span>
+                    <span className="pr-4 text-xl text-gray-400 dark:text-zinc-400">Sort By</span>
                     <select
                         name="field"
-                        className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black"
+                        className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black dark:bg-zinc-500"
                         value={filters.field ?? SortField.Default}
                         onChange={handleSortFieldChange}
                     >
@@ -119,10 +119,10 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex",
                         currentModal === "filters" &&
-                            "fixed top-24 left-0 z-modal mb-24 !flex h-full w-full max-w-5xl overscroll-contain bg-white px-10 pt-5",
+                            "fixed top-24 left-0 z-modal mb-24 !flex h-full w-full max-w-5xl overscroll-contain bg-white px-10 pt-5 dark:bg-zinc-900",
                     )}
                 >
-                    <div className="static bg-white">
+                    <div className="static">
                         <div className="flex items-center justify-between pb-10 lg:hidden">
                             <h3 className="text-4xl font-bold">Filters</h3>
                             <a href="#" onClick={(e) => handleModalChange(e, false)}>
@@ -145,7 +145,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                                 />
                             ))}
                         </div>
-                        <hr className="mt-10 h-0.5 w-3/5 bg-gray-300 lg:hidden" />
+                        <hr className="mt-10 h-0.5 w-3/5 border-gray-300 dark:border-zinc-600 lg:hidden" />
                         <h4 className="pt-8 pb-11 text-4xl font-bold lg:mt-0 lg:text-xl">Price range</h4>
                         {Object.entries(PRICE_FILTER).map(([priceValue, priceFilter]) => (
                             <Checkbox

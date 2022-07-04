@@ -25,11 +25,11 @@ export default function PageWrapper({ title, description, children }: MetaProps)
     }
 
     return (
-        <div>
-            <div className="flex flex-col bg-white px-8 pb-16">
+        <>
+            <div className="flex flex-col bg-white px-8 pb-16 text-black dark:bg-zinc-800 dark:text-white">
                 <Meta title={title} description={description} />
 
-                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-white lg:h-32">
+                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-inherit dark:border-zinc-700 lg:h-32">
                     <div className="pt-5">
                         <SvgCompanyLogo className="h-5 lg:h-6" />
                     </div>
@@ -40,7 +40,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                         className="relative mr-4 h-8 w-8 lg:h-14 lg:w-14"
                     >
                         <SvgCartIcon />
-                        <span className="absolute left-7 top-7 bg-black px-1 pb-1 text-center text-base font-bold leading-4 tracking-widest text-white lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
+                        <span className="absolute left-7 top-7 bg-black px-1 py-0.5 text-center text-base font-bold leading-4 tracking-widest text-white dark:bg-zinc-300 dark:text-zinc-700 lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
                             {cart.cartProducts.size}
                         </span>
                     </a>
@@ -60,6 +60,6 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                     onClick={() => closeModal()}
                 ></div>
             )}
-        </div>
+        </>
     );
 }

@@ -49,4 +49,4 @@ If you want to quickly randomize data, run `pnpm run convert` (or equivalent). I
 - [SpinKit](https://github.com/tobiasahlin/SpinKit) loading spinner
 - [pnpm](https://pnpm.io/) (optional but recommended instead of NPM)
 
-The site will honor `prefers-color-scheme` because I like your eyes. Not yet though, sorry!
+The site honors `prefers-color-scheme` because choice is good.

@@ -22,7 +22,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                 >
                     <a aria-label="Go to previous page">
                         <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11 2L3 10L11 18" stroke="black" strokeWidth="3" />
+                            <path d="M11 2L3 10L11 18" stroke="currentColor" strokeWidth="3" />
                         </svg>
                     </a>
                 </Link>
@@ -35,7 +35,9 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                         <a
                             aria-label={`Go to page ${thisPage}`}
                             className={`text-3xl hover:font-semibold hover:text-current ${
-                                currentPage === thisPage ? "font-semibold" : "text-gray-400"
+                                currentPage === thisPage
+                                    ? "font-semibold dark:text-zinc-300"
+                                    : "text-gray-400 dark:text-zinc-500"
                             }`}
                         >
                             {page + 1}
@@ -47,7 +49,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                 <Link href={{ query: { ...newQuery, page: currentPage + 1 } }} scroll={false} shallow={true}>
                     <a aria-label="Go to next page">
                         <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 2L10 10L2 18" stroke="black" strokeWidth="3" />
+                            <path d="M2 2L10 10L2 18" stroke="currentColor" strokeWidth="3" />
                         </svg>
                     </a>
                 </Link>

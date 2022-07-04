@@ -11,8 +11,9 @@ interface ButtonProps {
 
 export default function Button({ href, onClick, invert = false, className = "", children }: ButtonProps) {
     const defaultColors = {
-        normal: "bg-black text-white outline-black hover:bg-white hover:text-black hover:outline-black",
-        inverted: "bg-white text-black outline-black hover:bg-black hover:text-white",
+        normal: "bg-black text-white outline-black hover:bg-white hover:text-black hover:outline-black dark:bg-white dark:text-black dark:outline-white dark:hover:bg-black dark:hover:text-white dark:hover:outline-black",
+        inverted:
+            "bg-white text-black outline-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black",
     };
 
     return (
