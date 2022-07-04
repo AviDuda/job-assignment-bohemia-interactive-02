@@ -29,7 +29,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
             <div className="flex flex-col px-8 pb-16">
                 <Meta title={title} description={description} />
 
-                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-inherit dark:border-zinc-700 lg:h-32">
+                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 lg:h-32">
                     <div className="pt-5">
                         <SvgCompanyLogo className="h-5 lg:h-6" />
                     </div>
