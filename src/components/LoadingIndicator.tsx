@@ -24,7 +24,7 @@ export default function LoadingIndicator({ size = "40px", color }: LoadingIndica
                 <div className="sk-grid-cube"></div>
             </div>
             <div
-                className="h-min bg-black p-8 text-2xl text-white motion-safe:hidden"
+                className="h-min bg-black p-8 text-2xl text-white motion-safe:hidden dark:bg-zinc-300 dark:text-zinc-700"
                 style={{ backgroundColor: color }}
             >
                 Loading...

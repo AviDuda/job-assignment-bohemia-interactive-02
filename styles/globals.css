@@ -6,6 +6,6 @@
 
 @layer base {
     :root {
-        --sk-color: theme("colors.black");
+        --sk-color: theme("colors.zinc.500");
     }
 }
