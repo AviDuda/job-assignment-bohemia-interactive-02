@@ -52,7 +52,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                 </main>
             </div>
 
-            <footer className="bg-gray-200 py-8 text-right dark:bg-zinc-900">
+            <footer className="bg-gray-200 py-8 px-8 text-right dark:bg-zinc-900">
                 <div className="container">
                     Photos provided by{" "}
                     <a
