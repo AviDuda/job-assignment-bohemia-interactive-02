@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         e.preventDefault();
                         cart.addToCart(product);
                     }}
-                    className="absolute bottom-0 left-0 w-full px-4 pb-4"
+                    className="absolute bottom-0 left-0 w-full px-4"
                 >
                     ADD TO CART
                 </Button>
