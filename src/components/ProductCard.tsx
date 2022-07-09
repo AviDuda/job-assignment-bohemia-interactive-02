@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { MinimalProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
+import { ModalContext } from "../context/ModalContext";
 
 import Button from "./Button";
 
@@ -10,7 +11,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-    const cart = CartContext.useContainer();
+    const { addToCart, cartProducts } = CartContext.useContainer();
+    const { showModal } = ModalContext.useContainer();
 
     return (
         <article className="flex flex-col gap-2">
@@ -36,11 +38,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                     href="#"
                     onClick={(e) => {
                         e.preventDefault();
-                        cart.addToCart(product);
+                        cartProducts.has(product.id) ? showModal("cart", false) : addToCart(product);
                     }}
-                    className="absolute bottom-0 left-0 w-full px-4"
+                    className="absolute bottom-0 left-0 w-full px-4 uppercase"
                 >
-                    ADD TO CART
+                    {cartProducts.has(product.id) ? "☑️ In cart" : "Add to cart"}
                 </Button>
             </div>
             <p className="text-xl font-bold" title={product.tags.join(", ")}>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PeopleAlsoBuy } from "../../pages";
 import { MinimalProduct, StoreProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
+import { ModalContext } from "../context/ModalContext";
 
 import Button from "./Button";
 
@@ -12,7 +13,8 @@ interface FeaturedProductProps {
 }
 
 export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedProductProps) {
-    const { addToCart } = CartContext.useContainer();
+    const { addToCart, cartProducts } = CartContext.useContainer();
+    const { showModal } = ModalContext.useContainer();
 
     return (
         <section className="border-b-2 border-gray-200 pb-16 dark:border-zinc-700">
@@ -22,10 +24,11 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     href="#"
                     onClick={(e) => {
                         e.preventDefault();
-                        addToCart(featured);
+                        cartProducts.has(featured.id) ? showModal("cart", false) : addToCart(featured);
                     }}
+                    className="uppercase"
                 >
-                    ADD TO CART
+                    {cartProducts.has(featured.id) ? "☑️ In cart" : "Add to cart"}
                 </Button>
             </div>
             <div className="relative mb-12 h-[553px] w-full">
