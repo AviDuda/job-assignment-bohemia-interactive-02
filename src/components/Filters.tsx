@@ -128,28 +128,23 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex",
                         currentModal === "filters" &&
-                            "fixed top-24 left-0 z-modal mb-24 !flex h-full w-full max-w-5xl overscroll-contain bg-white px-10 pt-5 dark:bg-zinc-900",
+                            "fixed top-24 left-0 z-modal !flex h-[calc(100%-6rem)] w-full max-w-5xl overflow-auto overscroll-contain bg-white px-10 py-5 dark:bg-zinc-900",
                     )}
                 >
-                    <div className="static">
-                        <div className="flex items-center justify-between pb-10 lg:hidden">
-                            <h3 className="text-4xl font-bold">Filters</h3>
-                            <a
-                                href="#"
-                                onClick={(e) => handleModalChange(e, false)}
-                                title="Close filters"
-                                aria-label="Close filters"
-                            >
-                                <SvgCloseIcon />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="flex-1 overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
-                        <h4 className="hidden pb-11 text-xl font-bold lg:block">Category</h4>
-                        <div
-                            className="max-h-[60vh] overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400
-                                      dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 lg:max-h-[80vh]"
+                    <div className="sticky flex items-center justify-between pb-10 lg:hidden">
+                        <h3 className="text-4xl font-bold">Filters</h3>
+                        <a
+                            href="#"
+                            onClick={(e) => handleModalChange(e, false)}
+                            title="Close filters"
+                            aria-label="Close filters"
                         >
+                            <SvgCloseIcon />
+                        </a>
+                    </div>
+                    <div className="flex-1 overflow-auto overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
+                        <h4 className="hidden pb-11 text-xl font-bold lg:block">Category</h4>
+                        <div className="max-h-[40vh] max-w-[80%] overflow-auto overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 lg:max-h-[80vh] lg:max-w-none">
                             {tags.map((tag) => (
                                 <Checkbox
                                     key={tag}
