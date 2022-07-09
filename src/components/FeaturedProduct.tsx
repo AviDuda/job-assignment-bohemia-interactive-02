@@ -25,7 +25,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
             <link itemProp="availability" href="https://schema.org/InStock" />
             <div className="hidden" aria-hidden itemProp="offers" itemScope itemType="https://schema.org/Offer">
                 <meta itemProp="priceCurrency" content="USD" />
-                <meta itemProp="price" content="69.00" />
+                <meta itemProp="price" content={featured.price.toFixed(2)} />
             </div>
             <div className="my-6 flex flex-wrap place-content-center place-items-center gap-4">
                 <h2 className="flex-grow break-words text-center text-3xl font-bold lg:text-left" itemProp="name">
@@ -103,7 +103,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                                 itemType="https://schema.org/Offer"
                                             >
                                                 <meta itemProp="priceCurrency" content="USD" />
-                                                <meta itemProp="price" content="69.00" />
+                                                <meta itemProp="price" content={product.price.toFixed(2)} />
                                             </div>
                                             <Image
                                                 src={product.image.medium}
