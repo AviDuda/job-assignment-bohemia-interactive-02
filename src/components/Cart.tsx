@@ -40,12 +40,12 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                     </div>
                 )}
                 {cartEntries.map(([productId, product]) => (
-                    <div key={productId} className="grid auto-rows-fr gap-5 sm:grid-cols-4">
-                        <div className="sm:col-span-3">
+                    <div key={productId} className="flex flex-col gap-4 sm:flex-row sm:gap-12">
+                        <div className="flex-1 text-center sm:text-start">
                             <h4 className="text-xl font-bold sm:max-w-[50vw]">{product.title}</h4>
                             <p className="text-3xl text-gray-600 dark:text-zinc-400">${[product.price]}</p>
                         </div>
-                        <div className="relative order-first min-w-[4rem] sm:order-none">
+                        <div className="relative -order-1 min-h-[6rem] min-w-[4rem] sm:order-none sm:min-h-0">
                             <Image src={product.image.small} layout="fill" objectFit="contain" alt={product.title} />
                         </div>
                     </div>
