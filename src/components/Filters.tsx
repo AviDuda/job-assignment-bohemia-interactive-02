@@ -72,7 +72,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
     }
 
     return (
-        <section className="py-16">
+        <>
             <div className="flex flex-wrap items-center justify-between gap-8">
                 <div className="flex-1">
                     <span className="text-3xl font-bold">Photography</span>
@@ -177,6 +177,6 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                 </div>
                 {children}
             </div>
-        </section>
+        </>
     );
 }

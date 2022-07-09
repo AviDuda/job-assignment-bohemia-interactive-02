@@ -124,7 +124,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
     const [isLoading, setIsLoading] = useState<boolean>(initialData?.products.length === 0);
     const [filters, setFilters] = useState<FilterQuery>(initialData?.filters ?? DEFAULT_QUERY_VALUES);
 
-    const productListRef = useRef<HTMLDivElement | null>(null);
+    const productListRef = useRef<HTMLElement | null>(null);
     const currentAbortControllerRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
@@ -184,7 +184,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                 {initialData && (
                     <>
                         <FeaturedProduct featured={initialData.featured} peopleAlsoBuy={initialData.peopleAlsoBuy} />
-                        <div ref={productListRef}>
+                        <section ref={productListRef} className="pt-8">
                             <Filters tags={initialData.tags} filters={filters}>
                                 <div className="flex-grow">
                                     {isLoading && (
@@ -237,7 +237,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                                     )}
                                 </div>
                             </Filters>
-                        </div>
+                        </section>
                     </>
                 )}
             </PageWrapper>
