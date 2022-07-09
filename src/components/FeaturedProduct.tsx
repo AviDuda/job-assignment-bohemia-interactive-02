@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 
 import { MinimalProduct, StoreProduct } from "../apiTypes";
@@ -76,54 +77,67 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                         {featured.description}
                     </div>
                 </div>
-                <div className="flex flex-col-reverse gap-14 text-center lg:flex-col lg:text-right">
+                <div className="flex flex-col-reverse justify-between gap-14 text-center lg:flex-col lg:gap-4 lg:text-right">
                     {peopleAlsoBuy && (
                         <div>
                             <h3 className="pb-7 text-xl font-bold leading-6">People also buy</h3>
                             <div className="flex justify-center gap-8 lg:justify-end">
-                                {peopleAlsoBuy.map((product) => (
-                                    <a
-                                        href="#"
-                                        key={product.id}
-                                        itemScope
-                                        itemType="https://schema.org/Product"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            addToCart(product);
-                                        }}
-                                    >
-                                        <meta itemProp="name" content={product.title} />
-                                        <link itemProp="availability" href="https://schema.org/InStock" />
-                                        <meta itemProp="width" content={product.width.toString()} />
-                                        <meta itemProp="height" content={product.height.toString()} />
+                                {peopleAlsoBuy.map((product) => {
+                                    const isProductInCart = cartProducts.has(product.id);
+                                    return (
                                         <div
-                                            className="hidden"
-                                            aria-hidden
-                                            itemProp="offers"
+                                            key={product.id}
                                             itemScope
-                                            itemType="https://schema.org/Offer"
+                                            itemType="https://schema.org/Product"
+                                            className="group flex w-32 flex-col"
                                         >
-                                            <meta itemProp="priceCurrency" content="USD" />
-                                            <meta itemProp="price" content="69.00" />
+                                            <meta itemProp="name" content={product.title} />
+                                            <link itemProp="availability" href="https://schema.org/InStock" />
+                                            <meta itemProp="width" content={product.width.toString()} />
+                                            <meta itemProp="height" content={product.height.toString()} />
+                                            <div
+                                                className="hidden"
+                                                aria-hidden
+                                                itemProp="offers"
+                                                itemScope
+                                                itemType="https://schema.org/Offer"
+                                            >
+                                                <meta itemProp="priceCurrency" content="USD" />
+                                                <meta itemProp="price" content="69.00" />
+                                            </div>
+                                            <Image
+                                                src={product.image.medium}
+                                                alt={product.title}
+                                                title={`Image of "${product.title}" by ${product.user.first_name} ${
+                                                    product.user.last_name
+                                                }${
+                                                    typeof product.user.username === "string"
+                                                        ? ` (${product.user.username})`
+                                                        : ""
+                                                }`}
+                                                width={128}
+                                                height={144}
+                                                objectFit="cover"
+                                                itemProp="image"
+                                                className="flex-grow-0"
+                                                style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
+                                            />
+                                            <Button
+                                                href="#"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    isProductInCart ? showModal("cart", false) : addToCart(product);
+                                                }}
+                                                className={clsx(
+                                                    "visible block flex-shrink flex-grow-0 px-2 text-sm uppercase group-hover:visible",
+                                                    !isProductInCart && "lg:invisible",
+                                                )}
+                                            >
+                                                {isProductInCart ? "☑️ In cart" : "Add to cart"}
+                                            </Button>
                                         </div>
-                                        <Image
-                                            src={product.image.small}
-                                            alt={product.title}
-                                            title={`Image of "${product.title}" by ${product.user.first_name} ${
-                                                product.user.last_name
-                                            }${
-                                                typeof product.user.username === "string"
-                                                    ? ` (${product.user.username})`
-                                                    : ""
-                                            }`}
-                                            width={117}
-                                            height={147}
-                                            objectFit="cover"
-                                            itemProp="image"
-                                            style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
-                                        />
-                                    </a>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
