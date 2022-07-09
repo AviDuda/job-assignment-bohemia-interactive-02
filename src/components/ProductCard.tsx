@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 
 import { MinimalProduct } from "../apiTypes";
@@ -14,8 +15,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     const { addToCart, cartProducts } = CartContext.useContainer();
     const { showModal } = ModalContext.useContainer();
 
+    const isProductInCart = cartProducts.has(product.id);
+
     return (
-        <article className="flex flex-col gap-2" itemScope itemType="https://schema.org/Product">
+        <article className="group flex flex-col gap-2" itemScope itemType="https://schema.org/Product">
             <meta itemProp="width" content={product.width.toString()} />
             <meta itemProp="height" content={product.height.toString()} />
             <div className="relative h-96 w-full" style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}>
@@ -38,11 +41,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                     href="#"
                     onClick={(e) => {
                         e.preventDefault();
-                        cartProducts.has(product.id) ? showModal("cart", false) : addToCart(product);
+                        isProductInCart ? showModal("cart", false) : addToCart(product);
                     }}
-                    className="absolute bottom-0 left-0 w-full px-4 uppercase"
+                    className={clsx(
+                        "absolute bottom-0 left-0 w-full px-4 uppercase group-hover:block",
+                        !isProductInCart && "lg:hidden",
+                    )}
                 >
-                    {cartProducts.has(product.id) ? "☑️ In cart" : "Add to cart"}
+                    {isProductInCart ? "☑️ In cart" : "Add to cart"}
                 </Button>
             </div>
             <p className="text-xl font-bold" title={product.tags.join(", ")}>
