@@ -1,13 +1,14 @@
 import type { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
 import { DEFAULT_QUERY_VALUES, parseApiQuery, ProductLoadError, FilterQuery } from "../src/api";
 import { StoreProduct, MinimalProduct, ApiResponse } from "../src/apiTypes";
-import ErrorMessage from "../src/components/ErrorMessage";
 import FeaturedProduct from "../src/components/FeaturedProduct";
 import Filters from "../src/components/Filters";
 import LoadingIndicator from "../src/components/LoadingIndicator";
+import Message from "../src/components/Message";
 import PageWrapper from "../src/components/PageWrapper";
 import Pagination from "../src/components/Pagination";
 import ProductCard from "../src/components/ProductCard";
@@ -121,7 +122,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
     const [error, setError] = useState<string | null>(
         initialError === null ? null : humanizeError(new Error(initialError)),
     );
-    const [isLoading, setIsLoading] = useState<boolean>(initialData?.products.length === 0);
+    const [isLoading, setIsLoading] = useState<boolean>(typeof initialData?.products === "undefined");
     const [filters, setFilters] = useState<FilterQuery>(initialData?.filters ?? DEFAULT_QUERY_VALUES);
 
     const productListRef = useRef<HTMLElement | null>(null);
@@ -180,7 +181,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
     return (
         <>
             <PageWrapper title="Products">
-                {!isLoading && !initialData && error && <ErrorMessage message={error} />}
+                {!isLoading && !initialData && error && <Message type="error" message={error} />}
                 {initialData && (
                     <>
                         <FeaturedProduct featured={initialData.featured} peopleAlsoBuy={initialData.peopleAlsoBuy} />
@@ -198,10 +199,32 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                                         <>
                                             {error && (
                                                 <div className="flex w-full justify-center py-16 lg:py-32">
-                                                    <ErrorMessage message={error} />
+                                                    <Message type="error" message={error} />
                                                 </div>
                                             )}
-                                            {!error && products && (
+                                            {!error && products && products.length === 0 && (
+                                                <div className="flex w-full justify-center py-16 lg:py-32">
+                                                    <Message
+                                                        type="info"
+                                                        message={
+                                                            <span>
+                                                                No products found. Try different filters or{" "}
+                                                                <Link
+                                                                    href={{ query: {} }}
+                                                                    scroll={false}
+                                                                    shallow={true}
+                                                                >
+                                                                    <a className="text-gray-500 hover:text-gray-600 dark:text-zinc-400 dark:hover:text-zinc-500">
+                                                                        reset them
+                                                                    </a>
+                                                                </Link>
+                                                                .
+                                                            </span>
+                                                        }
+                                                    />
+                                                </div>
+                                            )}
+                                            {!error && products && products.length > 0 && (
                                                 <div className="flex flex-col gap-16">
                                                     <section
                                                         className="grid gap-12 sm:grid-cols-2 xl:grid-cols-3"
