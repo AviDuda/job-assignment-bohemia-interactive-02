@@ -64,7 +64,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
         } else {
             allValues = allValues.filter((queryVal) => queryVal !== value);
         }
-        allValues = allValues.filter((val) => val !== "");
+        allValues = allValues.filter((val) => val !== "").sort((a, b) => a.localeCompare(b));
         const joinedValues = allValues.join(",");
         joinedValues === "" ? query.delete(field) : query.set(field, joinedValues);
         query.delete("page");
