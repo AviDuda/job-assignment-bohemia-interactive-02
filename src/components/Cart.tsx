@@ -33,7 +33,7 @@ export default function Cart({ onCartOpenChange }: CartProps) {
             <a href="#" onClick={onCartOpenChange} className="self-end" title="Close cart" aria-label="Close cart">
                 <SvgCloseIcon />
             </a>
-            <div className="flex flex-col gap-8 overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 sm:overflow-auto">
+            <div className="flex flex-col gap-8 overflow-auto overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
                 {cartEntries.length === 0 && (
                     <div className="text-center text-xl font-bold text-gray-500 dark:text-zinc-400">
                         Ready to go shopping?
