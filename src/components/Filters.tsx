@@ -79,44 +79,46 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     <span className="pl-4 pr-[0.6rem] text-4xl font-semibold">/ </span>
                     <span className="text-3xl text-gray-400 dark:text-zinc-400">Premium Photos</span>
                 </div>
-                <a
-                    href="#"
-                    className="lg:hidden"
-                    title="Show filters"
-                    aria-label="Show filters"
-                    onClick={(e) => handleModalChange(e, true)}
-                >
-                    <SvgFilterIcon />
-                </a>
-                <div className="hidden items-center lg:flex">
-                    <Link
-                        href={{
-                            query: {
-                                ...router.query,
-                                direction:
-                                    filters.direction === SortDirection.Ascending
-                                        ? SortDirection.Descending
-                                        : SortDirection.Ascending,
-                            },
-                        }}
-                        scroll={false}
-                        shallow={true}
+                <div className="flex items-center gap-8">
+                    <div className="flex items-center">
+                        <Link
+                            href={{
+                                query: {
+                                    ...router.query,
+                                    direction:
+                                        filters.direction === SortDirection.Ascending
+                                            ? SortDirection.Descending
+                                            : SortDirection.Ascending,
+                                },
+                            }}
+                            scroll={false}
+                            shallow={true}
+                        >
+                            <a title="Change sorting direction" aria-label="Change sorting direction" className="p-2">
+                                <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
+                            </a>
+                        </Link>
+                        <span className="pr-4 text-xl text-gray-400 dark:text-zinc-400">Sort By</span>
+                        <select
+                            name="field"
+                            className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black dark:bg-zinc-500"
+                            value={filters.field ?? SortField.Default}
+                            onChange={handleSortFieldChange}
+                        >
+                            <option value="default">Default</option>
+                            <option value="price">Price</option>
+                            <option value="title">Title</option>
+                        </select>
+                    </div>
+                    <a
+                        href="#"
+                        className="lg:hidden"
+                        title="Show filters"
+                        aria-label="Show filters"
+                        onClick={(e) => handleModalChange(e, true)}
                     >
-                        <a title="Change sorting direction" aria-label="Change sorting direction" className="p-2">
-                            <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
-                        </a>
-                    </Link>
-                    <span className="pr-4 text-xl text-gray-400 dark:text-zinc-400">Sort By</span>
-                    <select
-                        name="field"
-                        className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black dark:bg-zinc-500"
-                        value={filters.field ?? SortField.Default}
-                        onChange={handleSortFieldChange}
-                    >
-                        <option value="default">Default</option>
-                        <option value="price">Price</option>
-                        <option value="title">Title</option>
-                    </select>
+                        <SvgFilterIcon />
+                    </a>
                 </div>
             </div>
             <div className="flex pt-14" ref={filtersParentRef}>
