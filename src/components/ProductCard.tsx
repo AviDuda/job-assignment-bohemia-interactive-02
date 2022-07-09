@@ -18,10 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <article className="flex flex-col gap-2" itemScope itemType="https://schema.org/Product">
             <meta itemProp="width" content={product.width.toString()} />
             <meta itemProp="height" content={product.height.toString()} />
-            <div
-                className={`relative h-96 w-full`}
-                style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
-            >
+            <div className="relative h-96 w-full" style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}>
                 <Image
                     src={product.image.medium}
                     alt={product.title}

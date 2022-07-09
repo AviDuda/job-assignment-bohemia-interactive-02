@@ -1,4 +1,6 @@
-export default function SvgCompanyLogo({ className }: { className?: string }) {
+import clsx, { ClassValue } from "clsx";
+
+export default function SvgCompanyLogo({ className }: { className?: ClassValue }) {
     return (
         <svg
             width="159"
@@ -6,7 +8,7 @@ export default function SvgCompanyLogo({ className }: { className?: string }) {
             viewBox="0 0 159 26"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={className}
+            className={clsx(className)}
         >
             <path
                 d="M2.32147 21.285C1.0124 21.285 0 20.3016 0 19.1388V2.41514C0 1.19315 1.07178 0.268677 2.32147 0.268677H7.35162C11.8153 0.268677 14.0474 3.13084 14.0474 6.11101C14.0474 8.19808 12.7084 9.47939 10.9228 10.3445C12.7678 11.089 14.6132 12.4313 14.6132 15.0234C14.6132 18.5124 11.8152 21.2853 7.23258 21.2853H2.32147V21.285ZM7.58926 8.49596C8.63104 8.49596 9.88064 7.78026 9.88064 6.17068C9.88064 5.03883 9.34484 4.02456 7.79734 4.02456H4.16679V8.49604H7.58926V8.49596ZM4.16687 12.3118V17.498H7.49987C9.46414 17.498 10.4467 16.5152 10.4467 14.9638C10.4467 13.2645 9.2565 12.3118 7.67856 12.3118H4.16687Z"

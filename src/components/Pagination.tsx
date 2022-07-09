@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -34,11 +35,12 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                     <Link href={{ query }} scroll={false} shallow={true} key={thisPage}>
                         <a
                             aria-label={`Go to page ${thisPage}`}
-                            className={`text-3xl hover:font-semibold hover:text-current ${
+                            className={clsx(
+                                "text-3xl hover:font-semibold hover:text-current",
                                 currentPage === thisPage
                                     ? "font-semibold dark:text-zinc-300"
-                                    : "text-gray-400 dark:text-zinc-500"
-                            }`}
+                                    : "text-gray-400 dark:text-zinc-500",
+                            )}
                         >
                             {page + 1}
                         </a>
