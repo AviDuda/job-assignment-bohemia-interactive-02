@@ -79,7 +79,13 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     <span className="pl-4 pr-[0.6rem] text-4xl font-semibold">/ </span>
                     <span className="text-3xl text-gray-400 dark:text-zinc-400">Premium Photos</span>
                 </div>
-                <a href="#" className="lg:hidden" aria-label="Show filters" onClick={(e) => handleModalChange(e, true)}>
+                <a
+                    href="#"
+                    className="lg:hidden"
+                    title="Show filters"
+                    aria-label="Show filters"
+                    onClick={(e) => handleModalChange(e, true)}
+                >
                     <SvgFilterIcon />
                 </a>
                 <div className="hidden items-center lg:flex">
@@ -96,7 +102,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                         scroll={false}
                         shallow={true}
                     >
-                        <a title="Change sorting direction" className="p-2">
+                        <a title="Change sorting direction" aria-label="Change sorting direction" className="p-2">
                             <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
                         </a>
                     </Link>
@@ -116,6 +122,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
             <div className="flex pt-14" ref={filtersParentRef}>
                 <div
                     ref={filtersRef}
+                    role="dialog"
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex",
                         currentModal === "filters" &&
@@ -125,14 +132,22 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     <div className="static">
                         <div className="flex items-center justify-between pb-10 lg:hidden">
                             <h3 className="text-4xl font-bold">Filters</h3>
-                            <a href="#" onClick={(e) => handleModalChange(e, false)}>
+                            <a
+                                href="#"
+                                onClick={(e) => handleModalChange(e, false)}
+                                title="Close filters"
+                                aria-label="Close filters"
+                            >
                                 <SvgCloseIcon />
                             </a>
                         </div>
                     </div>
                     <div className="flex-1 overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
                         <h4 className="hidden pb-11 text-xl font-bold lg:block">Category</h4>
-                        <div className="max-h-[60vh] overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 lg:max-h-[80vh]">
+                        <div
+                            className="max-h-[60vh] overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400
+                                      dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 lg:max-h-[80vh]"
+                        >
                             {tags.map((tag) => (
                                 <Checkbox
                                     key={tag}

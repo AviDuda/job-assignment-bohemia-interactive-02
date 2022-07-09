@@ -37,6 +37,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                         href="#"
                         onClick={handleCartOpenChange}
                         title="View cart"
+                        aria-label="View cart"
                         className="relative mr-4 h-8 w-8 lg:h-14 lg:w-14"
                     >
                         <SvgCartIcon />

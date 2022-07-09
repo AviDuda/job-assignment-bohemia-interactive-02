@@ -27,9 +27,10 @@ export default function Cart({ onCartOpenChange }: CartProps) {
     return (
         <div
             className="fixed left-0 top-24 z-modal flex h-[calc(100%-6rem)] w-full flex-col gap-6 overscroll-contain border-4 border-t-[1px] border-gray-200 bg-white px-6 py-7 dark:border-zinc-700 dark:bg-zinc-900 sm:sticky sm:left-full sm:h-[inherit] sm:max-h-max sm:min-w-[20rem] sm:max-w-fit lg:top-32"
+            role="dialog"
             ref={cartRef}
         >
-            <a href="#" onClick={onCartOpenChange} className="self-end">
+            <a href="#" onClick={onCartOpenChange} className="self-end" title="Close cart" aria-label="Close cart">
                 <SvgCloseIcon />
             </a>
             <div className="flex flex-col gap-8 overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 sm:overflow-auto">
@@ -51,7 +52,7 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                 ))}
             </div>
             {cartEntries.length > 0 && (
-                <div className="mt-auto mt-auto border-t-2 border-t-gray-300 pt-8 dark:border-t-zinc-700 sm:mt-0">
+                <div className="mt-auto border-t-2 border-t-gray-300 pt-8 dark:border-t-zinc-700 sm:mt-0">
                     <Button
                         href="#"
                         invert={true}
