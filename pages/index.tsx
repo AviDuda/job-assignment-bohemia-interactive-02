@@ -219,10 +219,23 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                                             )}
                                             {!error && products && (
                                                 <div className="flex flex-col gap-16">
-                                                    <section className="grid gap-12 sm:grid-cols-2 xl:grid-cols-3">
-                                                        {products.map((product) => (
-                                                            <ProductCard key={product.id} product={product} />
-                                                        ))}
+                                                    <section
+                                                        className="grid gap-12 sm:grid-cols-2 xl:grid-cols-3"
+                                                        itemScope
+                                                        itemType="https://schema.org/ProductCollection"
+                                                    >
+                                                        <>
+                                                            <span
+                                                                itemProp="collectionSize"
+                                                                className="hidden"
+                                                                aria-label={`${totalProductCount} total products`}
+                                                            >
+                                                                {totalProductCount}
+                                                            </span>
+                                                            {products.map((product) => (
+                                                                <ProductCard key={product.id} product={product} />
+                                                            ))}
+                                                        </>
                                                     </section>
                                                     {products.length < totalProductCount && (
                                                         <Pagination

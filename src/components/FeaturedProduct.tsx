@@ -17,9 +17,20 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
     const { showModal } = ModalContext.useContainer();
 
     return (
-        <section className="border-b-2 border-gray-200 pb-16 dark:border-zinc-700">
+        <section
+            className="border-b-2 border-gray-200 pb-16 dark:border-zinc-700"
+            itemScope
+            itemType="https://schema.org/Product"
+        >
+            <link itemProp="availability" href="https://schema.org/InStock" />
+            <div className="hidden" aria-hidden itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="priceCurrency" content="USD" />
+                <meta itemProp="price" content="69.00" />
+            </div>
             <div className="my-6 flex flex-wrap place-content-center place-items-center gap-4">
-                <h2 className="flex-grow break-words text-center text-3xl font-bold lg:text-left">{featured.title}</h2>
+                <h2 className="flex-grow break-words text-center text-3xl font-bold lg:text-left" itemProp="name">
+                    {featured.title}
+                </h2>
                 <Button
                     href="#"
                     onClick={(e) => {
@@ -42,6 +53,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     objectFit="cover"
                     priority={true}
                     style={{ backgroundColor: `rgb(${featured.main_color.join(", ")})` }}
+                    itemProp="image"
                 />
                 <div className="absolute bottom-0 left-0 bg-white p-4 text-xl font-bold text-black dark:bg-black dark:text-white sm:px-14">
                     Photo of the day
@@ -50,10 +62,18 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
             <div className="grid justify-between gap-8 lg:grid-cols-2">
                 <div>
                     <h3 className="pb-2 text-xl font-bold leading-6">About the {featured.title}</h3>
-                    <h4 className="pb-3 text-xl font-bold capitalize leading-6 text-gray-600 dark:text-zinc-400">
-                        {featured.tags[0] ?? null}
-                    </h4>
-                    <div className="prose-lg whitespace-pre-wrap leading-normal text-gray-600/90 dark:text-zinc-400">
+                    {featured.tags[0] && (
+                        <h4
+                            className="pb-3 text-xl font-bold capitalize leading-6 text-gray-600 dark:text-zinc-400"
+                            itemProp="category"
+                        >
+                            {featured.tags[0]}
+                        </h4>
+                    )}
+                    <div
+                        className="prose-lg whitespace-pre-wrap leading-normal text-gray-600/90 dark:text-zinc-400"
+                        itemProp="description"
+                    >
                         {featured.description}
                     </div>
                 </div>
@@ -63,22 +83,36 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                             <h3 className="pb-7 text-xl font-bold leading-6">People also buy</h3>
                             <div className="flex justify-center gap-8 lg:justify-end">
                                 {peopleAlsoBuy.map((product) => (
-                                    <Image
-                                        key={product.id}
-                                        src={product.image}
-                                        alt={product.title}
-                                        title={`Image of "${product.title}" by ${product.user.first_name} ${
-                                            product.user.last_name
-                                        }${
-                                            typeof product.user.username === "string"
-                                                ? ` (${product.user.username})`
-                                                : ""
-                                        }`}
-                                        width={117}
-                                        height={147}
-                                        objectFit="cover"
-                                        style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
-                                    />
+                                    <div key={product.id} itemScope itemType="https://schema.org/Product">
+                                        <meta itemProp="name" content={product.title} />
+                                        <link itemProp="availability" href="https://schema.org/InStock" />
+                                        <div
+                                            className="hidden"
+                                            aria-hidden
+                                            itemProp="offers"
+                                            itemScope
+                                            itemType="https://schema.org/Offer"
+                                        >
+                                            <meta itemProp="priceCurrency" content="USD" />
+                                            <meta itemProp="price" content="69.00" />
+                                        </div>
+                                        <Image
+                                            src={product.image}
+                                            alt={product.title}
+                                            title={`Image of "${product.title}" by ${product.user.first_name} ${
+                                                product.user.last_name
+                                            }${
+                                                typeof product.user.username === "string"
+                                                    ? ` (${product.user.username})`
+                                                    : ""
+                                            }`}
+                                            width={117}
+                                            height={147}
+                                            objectFit="cover"
+                                            itemProp="image"
+                                            style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -86,7 +120,8 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     <div>
                         <h3 className="pb-2 text-xl font-bold leading-6">Details</h3>
                         <p className="text-gray-600 dark:text-zinc-400">
-                            Size: {featured.width} x {featured.height} pixels
+                            Size: <span itemProp="width">{featured.width}</span> x{" "}
+                            <span itemProp="height">{featured.height}</span> pixels
                         </p>
                     </div>
                 </div>
