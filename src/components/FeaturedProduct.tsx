@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { PeopleAlsoBuy } from "../../pages";
 import { MinimalProduct, StoreProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
 import { ModalContext } from "../context/ModalContext";
@@ -9,7 +8,7 @@ import Button from "./Button";
 
 interface FeaturedProductProps {
     featured: MinimalProduct & Pick<StoreProduct, "description">;
-    peopleAlsoBuy: PeopleAlsoBuy[];
+    peopleAlsoBuy: MinimalProduct[];
 }
 
 export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedProductProps) {
@@ -83,9 +82,20 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                             <h3 className="pb-7 text-xl font-bold leading-6">People also buy</h3>
                             <div className="flex justify-center gap-8 lg:justify-end">
                                 {peopleAlsoBuy.map((product) => (
-                                    <div key={product.id} itemScope itemType="https://schema.org/Product">
+                                    <a
+                                        href="#"
+                                        key={product.id}
+                                        itemScope
+                                        itemType="https://schema.org/Product"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            addToCart(product);
+                                        }}
+                                    >
                                         <meta itemProp="name" content={product.title} />
                                         <link itemProp="availability" href="https://schema.org/InStock" />
+                                        <meta itemProp="width" content={product.width.toString()} />
+                                        <meta itemProp="height" content={product.height.toString()} />
                                         <div
                                             className="hidden"
                                             aria-hidden
@@ -97,7 +107,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                             <meta itemProp="price" content="69.00" />
                                         </div>
                                         <Image
-                                            src={product.image}
+                                            src={product.image.small}
                                             alt={product.title}
                                             title={`Image of "${product.title}" by ${product.user.first_name} ${
                                                 product.user.last_name
@@ -112,7 +122,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                             itemProp="image"
                                             style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
                                         />
-                                    </div>
+                                    </a>
                                 ))}
                             </div>
                         </div>

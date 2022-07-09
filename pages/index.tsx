@@ -16,17 +16,12 @@ import { apiRequest, getRandom, PRODUCTS_PER_PAGE } from "../src/utils";
 
 import { getFilteredProducts, getMinimalProduct, getStoreData } from "./api/products";
 
-export type PeopleAlsoBuy = Pick<StoreProduct, "id" | "title" | "slug" | "main_color"> & {
-    image: StoreProduct["image"]["small"];
-    user: MinimalProduct["user"];
-};
-
 interface HomepageProps {
     initialData?: {
         products: MinimalProduct[];
         count: number;
         featured: MinimalProduct & Pick<StoreProduct, "description">;
-        peopleAlsoBuy: PeopleAlsoBuy[];
+        peopleAlsoBuy: MinimalProduct[];
         tags: StoreProduct["tags"];
         filters: FilterQuery;
     };
@@ -81,25 +76,14 @@ export const getServerSideProps: GetServerSideProps<HomepageProps> = async ({ qu
             description: featuredProduct.description,
         };
 
-        const peopleAlsoBuy = new Map<StoreProduct["id"], PeopleAlsoBuy>();
+        const peopleAlsoBuy = new Map<StoreProduct["id"], MinimalProduct>();
 
         while (peopleAlsoBuy.size < 3) {
             const product = getRandom(allProducts);
             if (product.id === featured.id) {
                 continue;
             }
-            peopleAlsoBuy.set(product.id, {
-                id: product.id,
-                title: product.title,
-                slug: product.slug,
-                image: product.image.small,
-                main_color: product.main_color,
-                user: {
-                    first_name: product.user.first_name,
-                    last_name: product.user.last_name,
-                    username: product.user.username,
-                },
-            });
+            peopleAlsoBuy.set(product.id, getMinimalProduct(product));
         }
 
         const tags = new Set<string>(allProducts.flatMap((p) => p.tags).filter((p) => p !== undefined));
