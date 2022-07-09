@@ -21,5 +21,9 @@
     "files.exclude": {
         ".next": true,
     },
+
     "typescript.tsdk": "node_modules/typescript/lib",
+
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 140
 }
