@@ -25,5 +25,6 @@
     "typescript.tsdk": "node_modules/typescript/lib",
 
     "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 140
+    "editor.wordWrapColumn": 140,
+    "diffEditor.wordWrap": "off",
 }
