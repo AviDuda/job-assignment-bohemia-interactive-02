@@ -1,19 +1,16 @@
-export const PRODUCTS_PER_PAGE = 9;
+export const PRODUCTS_PER_PAGE = 6;
 
 export const PRICE_FILTER: { [priceFilter: string]: { name: string; check: (price: number) => boolean } } = {
     bargain: {
         name: "Less than $20",
-        // value: "less_than_twenty",
         check: (price) => price < 20,
     },
     normal: {
         name: "$20 - $100",
-        // value: "twenty_to_two_hundred",
         check: (price) => price >= 20 && price < 100,
     },
     iliveinsf: {
         name: "$100 - $200",
-        // value: "hundred_to_two_hundred",
         check: (price) => price >= 100 && price < 200,
     },
     jeffbezos: {
