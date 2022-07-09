@@ -41,9 +41,11 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                         className="relative mr-4 h-8 w-8 lg:h-14 lg:w-14"
                     >
                         <SvgCartIcon />
-                        <span className="absolute left-7 top-7 bg-black px-1 py-0.5 text-center text-base font-bold leading-4 tracking-widest text-white dark:bg-zinc-300 dark:text-zinc-700 lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
-                            {cart.cartProducts.size}
-                        </span>
+                        {cart.cartProducts.size > 0 && (
+                            <span className="absolute left-7 top-7 bg-black px-1 py-0.5 text-center text-base font-bold leading-4 tracking-widest text-white dark:bg-zinc-300 dark:text-zinc-700 lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
+                                {cart.cartProducts.size}
+                            </span>
+                        )}
                     </a>
                 </header>
 
