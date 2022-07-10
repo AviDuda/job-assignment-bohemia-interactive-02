@@ -15,6 +15,7 @@
         "next": "12.2.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
+        "react-virtuoso": "^2.16.1",
         "sharp": "^0.30.7",
         "spinkit": "^2.0.1",
         "unstated-next": "^1.1.0"

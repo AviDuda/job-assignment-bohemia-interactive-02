@@ -39,13 +39,14 @@ If you want to quickly randomize data, run `pnpm run convert` (or equivalent). I
 ## Stack
 
 - [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
-- [TypeScript](https://www.typescriptlang.org/)
+- [TypeScript](https://www.typescriptlang.org/) for less headaches
 - [unstated-next](https://github.com/jamiebuilds/unstated-next) for nicer React Context
 - [clsx](https://github.com/lukeed/clsx) for conditional classNames
+- [react-virtuoso](https://github.com/petyosi/react-virtuoso) for rendering large lists
 - [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
   - [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import) for import order
   - [`eslint-plugin-json-files`](https://github.com/kellyselden/eslint-plugin-json-files) for [package.json](package.json) order
-- [Tailwind CSS](https://tailwindcss.com/) + [PostCSS](https://postcss.org/) + [autoprefixer](https://github.com/postcss/autoprefixer)
+- [Tailwind CSS](https://tailwindcss.com/) + [PostCSS](https://postcss.org/) + [autoprefixer](https://github.com/postcss/autoprefixer) + [PurgeCSS](https://purgecss.com/plugins/postcss.html)
 - [SpinKit](https://github.com/tobiasahlin/SpinKit) loading spinner
 - [pnpm](https://pnpm.io/) (optional but recommended instead of NPM)
 

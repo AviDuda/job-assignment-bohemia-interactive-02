@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, ReactNode, useEffect, useRef } from "react";
+import { Virtuoso } from "react-virtuoso";
 
 import { FilterQuery, parseApiQuery, SortDirection, SortField } from "../api";
 import { StoreProduct } from "../apiTypes";
@@ -126,7 +127,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     ref={filtersRef}
                     role="dialog"
                     className={clsx(
-                        "hidden shrink-0 flex-col pr-8 lg:flex",
+                        "hidden shrink-0 flex-col pr-8 lg:flex lg:w-1/3 2xl:w-1/5",
                         currentModal === "filters" &&
                             "fixed top-24 left-0 z-modal !flex h-[calc(100%-6rem)] w-full max-w-5xl overflow-auto overscroll-contain bg-white px-10 py-5 dark:bg-zinc-900",
                     )}
@@ -142,37 +143,50 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                             <SvgCloseIcon />
                         </a>
                     </div>
-                    <div className="flex-1 overflow-auto overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900">
+                    <div className="flex flex-1 flex-col">
                         <h4 className="hidden pb-11 text-xl font-bold lg:block">Category</h4>
-                        <div className="max-h-[40vh] max-w-[80%] overflow-auto overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900 lg:max-h-[80vh] lg:max-w-none">
-                            {tags.map((tag) => (
+                        <div className="h-[40vh] min-h-[20rem] w-[80%] flex-shrink-0 lg:h-[70vh] lg:w-full">
+                            <Virtuoso
+                                totalCount={tags.length}
+                                overscan={68 * 5}
+                                className="overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900"
+                                itemContent={(index) => {
+                                    const tag = tags[index];
+                                    return (
+                                        <Checkbox
+                                            label={tag}
+                                            labelClassName="capitalize"
+                                            checked={filters.tags.includes(tag)}
+                                            onChange={(e) =>
+                                                handleCheckboxChange({
+                                                    field: "tags",
+                                                    value: tag,
+                                                    checked: e.target.checked,
+                                                })
+                                            }
+                                        />
+                                    );
+                                }}
+                            />
+                        </div>
+                        <hr className="mt-10 h-0.5 w-3/5 border-gray-300 dark:border-zinc-600 lg:hidden" />
+                        <h4 className="pt-8 pb-11 text-4xl font-bold lg:mt-0 lg:text-xl">Price range</h4>
+                        <div>
+                            {Object.entries(PRICE_FILTER).map(([priceValue, priceFilter]) => (
                                 <Checkbox
-                                    key={tag}
-                                    label={tag}
-                                    labelClassName="capitalize"
-                                    checked={filters.tags.includes(tag)}
+                                    key={priceValue}
+                                    label={priceFilter.name}
+                                    checked={filters.prices.includes(priceValue)}
                                     onChange={(e) =>
-                                        handleCheckboxChange({ field: "tags", value: tag, checked: e.target.checked })
+                                        handleCheckboxChange({
+                                            field: "prices",
+                                            value: priceValue,
+                                            checked: e.target.checked,
+                                        })
                                     }
                                 />
                             ))}
                         </div>
-                        <hr className="mt-10 h-0.5 w-3/5 border-gray-300 dark:border-zinc-600 lg:hidden" />
-                        <h4 className="pt-8 pb-11 text-4xl font-bold lg:mt-0 lg:text-xl">Price range</h4>
-                        {Object.entries(PRICE_FILTER).map(([priceValue, priceFilter]) => (
-                            <Checkbox
-                                key={priceValue}
-                                label={priceFilter.name}
-                                checked={filters.prices.includes(priceValue)}
-                                onChange={(e) =>
-                                    handleCheckboxChange({
-                                        field: "prices",
-                                        value: priceValue,
-                                        checked: e.target.checked,
-                                    })
-                                }
-                            />
-                        ))}
                     </div>
                 </div>
                 {children}
