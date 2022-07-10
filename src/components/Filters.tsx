@@ -78,7 +78,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                 <div className="flex-1">
                     <span className="text-3xl font-bold">Photography</span>
                     <span className="pl-4 pr-[0.6rem] text-4xl font-semibold">/ </span>
-                    <span className="text-3xl text-light-400 dark:text-dark-400">Premium Photos</span>
+                    <span className="text-3xl text-light-500/80 dark:text-dark-400">Premium Photos</span>
                 </div>
                 <div className="flex items-center gap-8">
                     <div className="flex items-center">
@@ -99,9 +99,12 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                                 <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
                             </a>
                         </Link>
-                        <span className="pr-4 text-xl text-light-400 dark:text-dark-400">Sort By</span>
+                        <span id="sort-by" className="pr-4 text-xl text-light-500 dark:text-dark-400">
+                            Sort By
+                        </span>
                         <select
                             name="field"
+                            aria-labelledby="sort-by"
                             className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black dark:bg-dark-500"
                             value={filters.field ?? SortField.Default}
                             onChange={handleSortFieldChange}
@@ -125,13 +128,15 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
             <div className="flex pt-14" ref={filtersParentRef}>
                 <div
                     ref={filtersRef}
-                    role="dialog"
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex lg:w-1/3 2xl:w-1/5",
                         currentModal === "filters" &&
                             "fixed top-24 left-0 z-modal !flex h-[calc(100%-6rem)] w-full max-w-5xl overflow-auto overscroll-contain bg-white px-10 py-5 dark:bg-dark-900",
                     )}
                 >
+                    <h2 className="sr-only" id="dialog-label-filters">
+                        Filters
+                    </h2>
                     <div className="sticky flex items-center justify-between pb-10 lg:hidden">
                         <h3 className="text-4xl font-bold">Filters</h3>
                         <a

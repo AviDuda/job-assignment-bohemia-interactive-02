@@ -21,7 +21,7 @@ export default function Button({ href, onClick, invert = false, className = "", 
             href={href}
             onClick={onClick}
             className={clsx(
-                `py-2 px-10 text-center text-2xl font-medium tracking-widest outline outline-2 outline-offset-[-2px]`,
+                `py-2 px-10 text-center text-2xl font-medium tracking-widest outline outline-2 outline-offset-[-2px] focus:ring-2 focus:ring-current`,
                 !invert && defaultColors.normal,
                 invert && defaultColors.inverted,
                 className,

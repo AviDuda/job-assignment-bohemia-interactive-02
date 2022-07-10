@@ -1,6 +1,14 @@
 export default function SvgFilterIcon() {
     return (
-        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+            width="29"
+            height="29"
+            viewBox="0 0 29 29"
+            fill="none"
+            role="img"
+            aria-label="Filter icon"
+            xmlns="http://www.w3.org/2000/svg"
+        >
             <path
                 d="M23.8119 0H5.18805C2.32736 0 0 2.32736 0 5.18805V23.812C0 26.6726 2.32736 29 5.18805 29H23.812C26.6726 29 29 26.6726 29 23.8119V5.18805C29 2.32736 26.6726 0 23.8119 0ZM27.3008 23.8119C27.3008 25.7357 25.7357 27.3008 23.8119 27.3008H5.18805C3.26431 27.3008 1.69922 25.7357 1.69922 23.8119V5.18805C1.69922 3.26431 3.26431 1.69922 5.18805 1.69922H23.812C25.7357 1.69922 27.3008 3.26431 27.3008 5.18805V23.8119Z"
                 fill="currentColor"

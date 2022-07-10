@@ -22,7 +22,15 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                     shallow={true}
                 >
                     <a aria-label="Go to previous page">
-                        <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                            width="13"
+                            height="20"
+                            viewBox="0 0 13 20"
+                            fill="none"
+                            role="img"
+                            aria-label="Previous page icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
                             <path d="M11 2L3 10L11 18" stroke="currentColor" strokeWidth="3" />
                         </svg>
                     </a>
@@ -39,7 +47,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                                 "text-3xl hover:font-semibold hover:text-current",
                                 currentPage === thisPage
                                     ? "font-semibold dark:text-dark-300"
-                                    : "text-light-400 dark:text-dark-500",
+                                    : "text-light-500/80 dark:text-dark-500",
                             )}
                         >
                             {page + 1}
@@ -50,7 +58,15 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
             {currentPage < totalPages && (
                 <Link href={{ query: { ...newQuery, page: currentPage + 1 } }} scroll={false} shallow={true}>
                     <a aria-label="Go to next page">
-                        <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                            width="13"
+                            height="20"
+                            viewBox="0 0 13 20"
+                            fill="none"
+                            role="img"
+                            aria-label="Next page icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
                             <path d="M2 2L10 10L2 18" stroke="currentColor" strokeWidth="3" />
                         </svg>
                     </a>

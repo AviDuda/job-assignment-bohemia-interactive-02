@@ -62,7 +62,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                         href="https://www.pexels.com/"
                         target="_blank"
                         rel="noreferrer"
-                        className="text-light-500 hover:text-light-600 dark:text-dark-400 dark:hover:text-dark-300"
+                        className="text-light-600/90 hover:text-light-600 dark:text-dark-400 dark:hover:text-dark-300"
                     >
                         Pexels
                     </a>
@@ -70,6 +70,9 @@ export default function PageWrapper({ title, description, children }: MetaProps)
             </footer>
             {currentModal && (
                 <div
+                    tabIndex={-1}
+                    role="dialog"
+                    aria-labelledby={`dialog-label-${currentModal}`}
                     className={clsx(
                         "fixed top-0 left-0 z-modal-overlay h-full w-full",
                         modalHasOverlay && "bg-black opacity-20 transition-opacity",
