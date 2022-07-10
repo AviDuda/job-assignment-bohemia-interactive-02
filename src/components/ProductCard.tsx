@@ -54,7 +54,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     {product.tags[0]}
                 </span>
                 {product.tags.length > 1 && (
-                    <span className="text-light-300 dark:text-dark-600"> + {product.tags.length - 1} more</span>
+                    <span className="text-light-500/80 dark:text-dark-500"> + {product.tags.length - 1} more</span>
                 )}
             </p>
             <h3 className="text-4xl font-bold" itemProp="name">
