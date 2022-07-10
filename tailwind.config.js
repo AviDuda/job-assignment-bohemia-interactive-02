@@ -33,17 +33,17 @@ module.exports = {
             light: colors.gray,
             dark: colors.zinc,
         },
+        zIndex: {
+            header: 10,
+            modal: 20,
+            "modal-overlay": 15,
+        },
         extend: {
             container: {
                 center: true,
             },
             fontFamily: {
                 sans: ["Archivo", ...defaultTheme.fontFamily.sans],
-            },
-            zIndex: {
-                header: 10,
-                modal: 20,
-                "modal-overlay": 15,
             },
         },
     },
