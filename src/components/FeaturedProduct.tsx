@@ -59,7 +59,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     Photo of the day
                 </div>
             </div>
-            <div className="grid justify-between gap-8 lg:grid-cols-2">
+            <div className="grid grid-cols-1 justify-between gap-8 lg:grid-cols-2">
                 <div>
                     <h3 className="pb-2 text-xl font-bold leading-6">About the {featured.title}</h3>
                     {featured.tags[0] && (
@@ -81,7 +81,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     {peopleAlsoBuy && (
                         <div>
                             <h3 className="pb-7 text-xl font-bold leading-6">People also buy</h3>
-                            <div className="flex justify-center gap-8 lg:justify-end">
+                            <div className="flex flex-col items-center justify-center gap-8 sm:flex-row lg:justify-end">
                                 {peopleAlsoBuy.map((product) => {
                                     const isProductInCart = cartProducts.has(product.id);
                                     return (
