@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import Image from "next/image";
+import Image from "next/future/image";
 
 import { MinimalProduct, StoreProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
 import { ModalContext } from "../context/ModalContext";
+import { getImageTitle } from "../utils";
 
 import Button from "./Button";
 
@@ -46,12 +47,9 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                 <Image
                     src={featured.image.large}
                     alt={featured.title}
-                    title={`Image by ${featured.user.first_name} ${featured.user.last_name}${
-                        typeof featured.user.username === "string" ? ` (${featured.user.username})` : ""
-                    }`}
-                    layout="fill"
-                    objectFit="cover"
+                    title={getImageTitle(featured)}
                     priority={true}
+                    className="h-full w-full object-cover"
                     style={{ backgroundColor: `rgb(${featured.main_color.join(", ")})` }}
                     itemProp="image"
                 />
@@ -108,18 +106,11 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                             <Image
                                                 src={product.image.medium}
                                                 alt={product.title}
-                                                title={`Image of "${product.title}" by ${product.user.first_name} ${
-                                                    product.user.last_name
-                                                }${
-                                                    typeof product.user.username === "string"
-                                                        ? ` (${product.user.username})`
-                                                        : ""
-                                                }`}
+                                                title={getImageTitle(product)}
                                                 width={128}
                                                 height={144}
-                                                objectFit="cover"
                                                 itemProp="image"
-                                                className="flex-grow-0"
+                                                className="flex-grow-0 object-contain"
                                                 style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
                                             />
                                             <Button

@@ -1,7 +1,8 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import { MouseEvent, useLayoutEffect, useRef } from "react";
 
 import { CartContext } from "../context/CartContext";
+import { getImageTitle } from "../utils";
 
 import Button from "./Button";
 import SvgCloseIcon from "./svg/SvgCloseIcon";
@@ -45,9 +46,12 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                             <h4 className="text-xl font-bold sm:max-w-[50vw]">{product.title}</h4>
                             <p className="text-3xl text-gray-600 dark:text-zinc-400">${[product.price]}</p>
                         </div>
-                        <div className="relative -order-1 min-h-[6rem] min-w-[4rem] sm:order-none sm:min-h-0">
-                            <Image src={product.image.small} layout="fill" objectFit="contain" alt={product.title} />
-                        </div>
+                        <Image
+                            src={product.image.small}
+                            alt={product.title}
+                            title={getImageTitle(product)}
+                            className="-order-1 max-h-24 min-h-[2rem] min-w-[2rem] object-contain sm:order-none"
+                        />
                     </div>
                 ))}
             </div>

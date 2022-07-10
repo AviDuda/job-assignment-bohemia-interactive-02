@@ -1,3 +1,5 @@
+import { MinimalProduct } from "./apiTypes";
+
 export const PRODUCTS_PER_PAGE = 6;
 
 export const PRICE_FILTER: { [priceFilter: string]: { name: string; check: (price: number) => boolean } } = {
@@ -48,4 +50,10 @@ export async function apiRequest<TSuccess>(url: string, abortController = new Ab
         throw new Error(data.error ?? "unknown_error");
     }
     return data as TSuccess;
+}
+
+export function getImageTitle(product: MinimalProduct) {
+    return `Image by ${product.user.first_name} ${product.user.last_name}${
+        typeof product.user.username === "string" ? ` (${product.user.username})` : ""
+    }`;
 }

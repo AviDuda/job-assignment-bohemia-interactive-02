@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import Image from "next/image";
+import Image from "next/future/image";
 
 import { MinimalProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
 import { ModalContext } from "../context/ModalContext";
+import { getImageTitle } from "../utils";
 
 import Button from "./Button";
 
@@ -25,11 +26,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <Image
                     src={product.image.medium}
                     alt={product.title}
-                    title={`Image by ${product.user.first_name} ${product.user.last_name}${
-                        typeof product.user.username === "string" ? ` (${product.user.username})` : ""
-                    }`}
-                    layout="fill"
-                    objectFit="contain"
+                    title={getImageTitle(product)}
+                    className="h-full w-full object-contain"
                     itemProp="image"
                 />
                 {product.bestseller && (
