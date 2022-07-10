@@ -214,7 +214,7 @@ const Homepage: NextPage = ({ initialData, initialError = null }: HomepageProps)
                                                                     scroll={false}
                                                                     shallow={true}
                                                                 >
-                                                                    <a className="text-gray-500 hover:text-gray-600 dark:text-zinc-400 dark:hover:text-zinc-500">
+                                                                    <a className="text-light-500 hover:text-light-600 dark:text-dark-400 dark:hover:text-dark-500">
                                                                         reset them
                                                                     </a>
                                                                 </Link>

@@ -78,7 +78,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                 <div className="flex-1">
                     <span className="text-3xl font-bold">Photography</span>
                     <span className="pl-4 pr-[0.6rem] text-4xl font-semibold">/ </span>
-                    <span className="text-3xl text-gray-400 dark:text-zinc-400">Premium Photos</span>
+                    <span className="text-3xl text-light-400 dark:text-dark-400">Premium Photos</span>
                 </div>
                 <div className="flex items-center gap-8">
                     <div className="flex items-center">
@@ -99,10 +99,10 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                                 <SvgSortIcon activeDirection={parseApiQuery(router.query).direction} />
                             </a>
                         </Link>
-                        <span className="pr-4 text-xl text-gray-400 dark:text-zinc-400">Sort By</span>
+                        <span className="pr-4 text-xl text-light-400 dark:text-dark-400">Sort By</span>
                         <select
                             name="field"
-                            className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black dark:bg-zinc-500"
+                            className="border-0 bg-[length:2rem_2rem] bg-[right_0_top_75%] text-xl text-black focus:ring-black dark:bg-dark-500"
                             value={filters.field ?? SortField.Default}
                             onChange={handleSortFieldChange}
                         >
@@ -129,7 +129,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex lg:w-1/3 2xl:w-1/5",
                         currentModal === "filters" &&
-                            "fixed top-24 left-0 z-modal !flex h-[calc(100%-6rem)] w-full max-w-5xl overflow-auto overscroll-contain bg-white px-10 py-5 dark:bg-zinc-900",
+                            "fixed top-24 left-0 z-modal !flex h-[calc(100%-6rem)] w-full max-w-5xl overflow-auto overscroll-contain bg-white px-10 py-5 dark:bg-dark-900",
                     )}
                 >
                     <div className="sticky flex items-center justify-between pb-10 lg:hidden">
@@ -149,7 +149,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                             <Virtuoso
                                 totalCount={tags.length}
                                 overscan={68 * 5}
-                                className="overscroll-contain scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-700 dark:scrollbar-track-zinc-900"
+                                className="overscroll-contain scrollbar-thin scrollbar-track-light-200 scrollbar-thumb-light-400 dark:scrollbar-thumb-dark-700 dark:scrollbar-track-dark-900"
                                 itemContent={(index) => {
                                     const tag = tags[index];
                                     return (
@@ -169,7 +169,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
                                 }}
                             />
                         </div>
-                        <hr className="mt-10 h-0.5 w-3/5 border-gray-300 dark:border-zinc-600 lg:hidden" />
+                        <hr className="mt-10 h-0.5 w-3/5 border-light-300 dark:border-dark-600 lg:hidden" />
                         <h4 className="pt-8 pb-11 text-4xl font-bold lg:mt-0 lg:text-xl">Price range</h4>
                         <div>
                             {Object.entries(PRICE_FILTER).map(([priceValue, priceFilter]) => (

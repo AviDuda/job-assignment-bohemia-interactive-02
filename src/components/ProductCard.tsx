@@ -50,18 +50,18 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </Button>
             </div>
             <p className="text-xl font-bold" title={product.tags.join(", ")}>
-                <span className="capitalize text-gray-600 dark:text-zinc-400" itemProp="category">
+                <span className="capitalize text-light-600 dark:text-dark-400" itemProp="category">
                     {product.tags[0]}
                 </span>
                 {product.tags.length > 1 && (
-                    <span className="text-gray-300 dark:text-zinc-600"> + {product.tags.length - 1} more</span>
+                    <span className="text-light-300 dark:text-dark-600"> + {product.tags.length - 1} more</span>
                 )}
             </p>
             <h3 className="text-4xl font-bold" itemProp="name">
                 {product.title}
             </h3>
             <p
-                className="text-3xl text-gray-600 dark:text-zinc-400"
+                className="text-3xl text-light-600 dark:text-dark-400"
                 itemProp="offers"
                 itemScope
                 itemType="https://schema.org/Offer"

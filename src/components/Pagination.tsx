@@ -38,8 +38,8 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                             className={clsx(
                                 "text-3xl hover:font-semibold hover:text-current",
                                 currentPage === thisPage
-                                    ? "font-semibold dark:text-zinc-300"
-                                    : "text-gray-400 dark:text-zinc-500",
+                                    ? "font-semibold dark:text-dark-300"
+                                    : "text-light-400 dark:text-dark-500",
                             )}
                         >
                             {page + 1}

@@ -19,7 +19,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
 
     return (
         <section
-            className="border-b-2 border-gray-200 pb-16 dark:border-zinc-700"
+            className="border-b-2 border-light-200 pb-16 dark:border-dark-700"
             itemScope
             itemType="https://schema.org/Product"
         >
@@ -62,14 +62,14 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     <h3 className="pb-2 text-xl font-bold leading-6">About the {featured.title}</h3>
                     {featured.tags[0] && (
                         <h4
-                            className="pb-3 text-xl font-bold capitalize leading-6 text-gray-600 dark:text-zinc-400"
+                            className="pb-3 text-xl font-bold capitalize leading-6 text-light-600 dark:text-dark-400"
                             itemProp="category"
                         >
                             {featured.tags[0]}
                         </h4>
                     )}
                     <div
-                        className="prose-lg whitespace-pre-wrap leading-normal text-gray-600/90 dark:text-zinc-400"
+                        className="prose-lg whitespace-pre-wrap leading-normal text-light-600/90 dark:text-dark-400"
                         itemProp="description"
                     >
                         {featured.description}
@@ -134,7 +134,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     )}
                     <div>
                         <h3 className="pb-2 text-xl font-bold leading-6">Details</h3>
-                        <p className="text-gray-600 dark:text-zinc-400">
+                        <p className="text-light-600 dark:text-dark-400">
                             Size: <span itemProp="width">{featured.width}</span> x{" "}
                             <span itemProp="height">{featured.height}</span> pixels
                         </p>

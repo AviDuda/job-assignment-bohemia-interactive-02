@@ -12,7 +12,7 @@ export default function SvgSortIcon({ activeDirection }: SvgSortIconProps) {
                     className={
                         !activeDirection || activeDirection === SortDirection.Ascending
                             ? "fill-current"
-                            : "fill-gray-400"
+                            : "fill-light-400"
                     }
                 />
                 <path
@@ -20,7 +20,7 @@ export default function SvgSortIcon({ activeDirection }: SvgSortIconProps) {
                     className={
                         !activeDirection || activeDirection === SortDirection.Descending
                             ? "fill-current"
-                            : "fill-gray-400"
+                            : "fill-light-400"
                     }
                 />
             </g>

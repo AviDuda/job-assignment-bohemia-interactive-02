@@ -29,7 +29,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
             <div className="flex flex-col px-8 pb-16">
                 <Meta title={title} description={description} />
 
-                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-gray-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 lg:h-32">
+                <header className="container sticky top-0 left-0 z-header flex h-24 flex-wrap items-center justify-between border-b-2 border-light-200 bg-white dark:border-dark-700 dark:bg-dark-800 lg:h-32">
                     <div className="pt-5">
                         <SvgCompanyLogo className="h-5 lg:h-6" />
                     </div>
@@ -42,7 +42,7 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                     >
                         <SvgCartIcon />
                         {cart.cartProducts.size > 0 && (
-                            <span className="absolute left-7 top-7 bg-black px-1 py-0.5 text-center text-base font-bold leading-4 tracking-widest text-white dark:bg-zinc-300 dark:text-zinc-700 lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
+                            <span className="absolute left-7 top-7 bg-black px-1 py-0.5 text-center text-base font-bold leading-4 tracking-widest text-white dark:bg-dark-300 dark:text-dark-700 lg:left-12 lg:top-12 lg:text-xl lg:leading-5">
                                 {cart.cartProducts.size}
                             </span>
                         )}
@@ -55,14 +55,14 @@ export default function PageWrapper({ title, description, children }: MetaProps)
                 </main>
             </div>
 
-            <footer className="bg-gray-200 py-8 px-8 text-right dark:bg-zinc-900">
+            <footer className="bg-light-200 py-8 px-8 text-right dark:bg-dark-900">
                 <div className="container">
                     Photos provided by{" "}
                     <a
                         href="https://www.pexels.com/"
                         target="_blank"
                         rel="noreferrer"
-                        className="text-gray-500 hover:text-gray-600 dark:text-zinc-500 dark:hover:text-zinc-400"
+                        className="text-light-500 hover:text-light-600 dark:text-dark-400 dark:hover:text-dark-300"
                     >
                         Pexels
                     </a>

@@ -1,5 +1,6 @@
 const plugin = require("tailwindcss/plugin");
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 const svgToDataUri = require("mini-svg-data-uri");
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig["theme"]} */
@@ -24,6 +25,14 @@ module.exports = {
         }),
     ],
     theme: {
+        colors: {
+            transparent: "transparent",
+            current: "currentColor",
+            white: "#ffffff",
+            black: "#000000",
+            light: colors.gray,
+            dark: colors.zinc,
+        },
         extend: {
             container: {
                 center: true,
