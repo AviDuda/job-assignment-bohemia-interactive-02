@@ -79,7 +79,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     {peopleAlsoBuy && (
                         <div>
                             <h3 className="pb-7 text-xl font-bold leading-6">People also buy</h3>
-                            <div className="flex flex-col items-center justify-center gap-8 sm:flex-row lg:justify-end">
+                            <div className="flex flex-wrap items-center justify-center gap-8 lg:justify-end">
                                 {peopleAlsoBuy.map((product) => {
                                     const isProductInCart = cartProducts.has(product.id);
                                     return (
@@ -103,16 +103,16 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                                 <meta itemProp="priceCurrency" content="USD" />
                                                 <meta itemProp="price" content={product.price.toFixed(2)} />
                                             </div>
-                                            <Image
-                                                src={product.image.medium}
-                                                alt={product.title}
-                                                title={getImageTitle(product)}
-                                                width={128}
-                                                height={144}
-                                                itemProp="image"
-                                                className="flex-grow-0 object-contain"
-                                                style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
-                                            />
+                                            <div className="h-36 w-32">
+                                                <Image
+                                                    src={product.image.medium}
+                                                    alt={product.title}
+                                                    title={getImageTitle(product)}
+                                                    itemProp="image"
+                                                    className="h-full w-full object-cover"
+                                                    style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}
+                                                />
+                                            </div>
                                             <Button
                                                 href="#"
                                                 onClick={(e) => {
