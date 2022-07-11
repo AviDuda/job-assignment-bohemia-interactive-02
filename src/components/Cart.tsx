@@ -43,7 +43,7 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                     </div>
                 )}
                 {cartEntries.map(([productId, product]) => (
-                    <div key={productId} className="flex flex-col gap-4 sm:flex-row sm:gap-12">
+                    <div key={productId} className="flex flex-col items-center gap-4 sm:flex-row sm:gap-12">
                         <div className="flex-1 text-center sm:text-start">
                             <h4 className="text-xl font-bold sm:max-w-[50vw]">{product.title}</h4>
                             <p className="text-3xl text-light-600 dark:text-dark-400">${[product.price]}</p>
@@ -52,7 +52,9 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                             src={product.image.small}
                             alt={product.title}
                             title={getImageTitle(product)}
-                            className="-order-1 max-h-24 min-h-[2rem] min-w-[2rem] object-contain sm:order-none"
+                            width={product.width / (product.height / 64)}
+                            height={64}
+                            className="-order-1 h-auto max-h-24 min-h-[2rem] w-auto min-w-[2rem] object-contain sm:order-none"
                         />
                     </div>
                 ))}

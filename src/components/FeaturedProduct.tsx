@@ -48,6 +48,9 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                     src={featured.image.large}
                     alt={featured.title}
                     title={getImageTitle(featured)}
+                    width={1536}
+                    height={553}
+                    sizes="(max-width: 640px) 640px, (max-width: 1280px) 1280px, 90vw"
                     priority={true}
                     className="h-full w-full object-cover"
                     style={{ backgroundColor: `rgb(${featured.main_color.join(", ")})` }}
@@ -108,6 +111,8 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                                     src={product.image.medium}
                                                     alt={product.title}
                                                     title={getImageTitle(product)}
+                                                    width={128}
+                                                    height={144}
                                                     itemProp="image"
                                                     className="h-full w-full object-cover"
                                                     style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}

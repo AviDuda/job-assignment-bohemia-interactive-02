@@ -27,6 +27,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                     src={product.image.medium}
                     alt={product.title}
                     title={getImageTitle(product)}
+                    width={product.width / (product.height / 384)}
+                    height={384}
                     className="h-full w-full object-contain"
                     itemProp="image"
                 />
