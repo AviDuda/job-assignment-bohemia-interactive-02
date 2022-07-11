@@ -27,7 +27,7 @@ export default function Cart({ onCartOpenChange }: CartProps) {
 
     return (
         <div
-            className="fixed left-0 top-24 z-modal flex h-[calc(100%-6rem)] w-full flex-col gap-6 overscroll-contain border-4 border-t-[1px] border-light-200 bg-white px-6 py-7 dark:border-dark-700 dark:bg-dark-900 sm:sticky sm:left-full sm:h-[inherit] sm:max-h-max sm:min-w-[20rem] sm:max-w-fit lg:top-32"
+            className="fixed left-0 top-24 z-modal flex h-[calc(100%-6rem)] w-full flex-col gap-6 overscroll-contain border-4 border-t-[1px] border-light-200 bg-white px-6 py-7 dark:border-dark-700 dark:bg-dark-900 sm:sticky sm:left-full sm:h-[inherit] sm:max-h-[calc(100vh-8rem)] sm:min-w-[20rem] sm:max-w-fit lg:top-32"
             ref={cartRef}
         >
             <h2 className="sr-only" id="dialog-label-cart">
