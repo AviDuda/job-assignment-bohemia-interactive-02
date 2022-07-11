@@ -19,7 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     const isProductInCart = cartProducts.has(product.id);
 
     return (
-        <article className="group flex flex-col gap-2" itemScope itemType="https://schema.org/Product">
+        <article className="group flex flex-col gap-2" tabIndex={0} itemScope itemType="https://schema.org/Product">
             <meta itemProp="width" content={product.width.toString()} />
             <meta itemProp="height" content={product.height.toString()} />
             <div className="relative h-96 w-full" style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}>
@@ -45,7 +45,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     }}
                     className={clsx(
                         "absolute bottom-0 left-0 w-full px-4 uppercase group-hover:block",
-                        !isProductInCart && "lg:hidden",
+                        !isProductInCart && "lg:hidden lg:group-focus-within:block",
                     )}
                 >
                     {isProductInCart ? "☑️ In cart" : "Add to cart"}

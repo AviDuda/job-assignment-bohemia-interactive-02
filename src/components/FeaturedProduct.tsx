@@ -91,6 +91,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                             itemScope
                                             itemType="https://schema.org/Product"
                                             className="group flex w-32 flex-col"
+                                            tabIndex={0}
                                         >
                                             <meta itemProp="name" content={product.title} />
                                             <link itemProp="availability" href="https://schema.org/InStock" />
@@ -126,7 +127,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                                 }}
                                                 className={clsx(
                                                     "visible block flex-shrink flex-grow-0 px-2 text-sm uppercase group-hover:visible",
-                                                    !isProductInCart && "lg:invisible",
+                                                    !isProductInCart && "lg:invisible lg:group-focus-within:visible",
                                                 )}
                                             >
                                                 {isProductInCart ? "☑️ In cart" : "Add to cart"}

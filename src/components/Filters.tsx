@@ -41,6 +41,13 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
         }
     }, [closeModal, currentModal, innerWidth, setShouldTrackResize]);
 
+    useEffect(() => {
+        // Focus on opening the modal
+        if (currentModal === "filters") {
+            filtersRef.current?.focus();
+        }
+    }, [currentModal]);
+
     function handleModalChange(e: MouseEvent, show: boolean) {
         e.preventDefault();
         show ? showModal("filters", true) : closeModal();
@@ -128,6 +135,7 @@ export default function Filters({ tags, filters, children }: ProductListProps) {
             <div className="flex pt-14" ref={filtersParentRef}>
                 <div
                     ref={filtersRef}
+                    tabIndex={currentModal === "filters" ? 0 : undefined}
                     className={clsx(
                         "hidden shrink-0 flex-col pr-8 lg:flex lg:w-1/3 2xl:w-1/5",
                         currentModal === "filters" &&
