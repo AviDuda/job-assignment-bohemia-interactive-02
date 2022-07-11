@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { parseApiQuery, ProductLoadError, SortDirection, SortField } from "../../src/api";
 import { ApiResponse, MinimalProduct, StoreProduct, SuccessApiResponse } from "../../src/apiTypes";
-import { PRICE_FILTER, PRODUCTS_PER_PAGE } from "../../src/utils";
+import { getPexelsImageUrl, PRICE_FILTER, PRODUCTS_PER_PAGE } from "../../src/utils";
 
 export interface JsonData<T> {
     products: T;
@@ -24,7 +24,7 @@ export function getMinimalProduct(product: StoreProduct): MinimalProduct {
         width,
         height,
         main_color,
-        image,
+        image: getPexelsImageUrl(image.large),
         tags,
         user: {
             first_name: user.first_name,

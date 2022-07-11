@@ -26,8 +26,8 @@ export type StoreProduct = Pick<
 
 export type MinimalProduct = Pick<
     StoreProduct,
-    "id" | "title" | "bestseller" | "image" | "price" | "width" | "height" | "main_color" | "tags"
-> & { user: Pick<StoreProduct["user"], "username" | "first_name" | "last_name"> };
+    "id" | "title" | "bestseller" | "price" | "width" | "height" | "main_color" | "tags"
+> & { image: string; user: Pick<StoreProduct["user"], "username" | "first_name" | "last_name"> };
 
 export interface PexelsPhoto {
     id: string;

@@ -2,7 +2,7 @@ import Image from "next/future/image";
 import { MouseEvent, useLayoutEffect, useRef } from "react";
 
 import { CartContext } from "../context/CartContext";
-import { getImageTitle } from "../utils";
+import { getImageTitle, getPexelsImageUrl } from "../utils";
 
 import Button from "./Button";
 import SvgCloseIcon from "./svg/SvgCloseIcon";
@@ -49,7 +49,7 @@ export default function Cart({ onCartOpenChange }: CartProps) {
                             <p className="text-3xl text-light-600 dark:text-dark-400">${[product.price]}</p>
                         </div>
                         <Image
-                            src={product.image.small}
+                            src={getPexelsImageUrl(product.image, (product.width / (product.height / 64)) * 2)}
                             alt={product.title}
                             title={getImageTitle(product)}
                             width={product.width / (product.height / 64)}

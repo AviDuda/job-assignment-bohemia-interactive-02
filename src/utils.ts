@@ -57,3 +57,15 @@ export function getImageTitle(product: MinimalProduct) {
         typeof product.user.username === "string" ? ` (${product.user.username})` : ""
     }`;
 }
+
+export function getPexelsImageUrl(src: string, maxWidth = 1536, quality = 90) {
+    if (!src.startsWith("https://images.pexels.com/photos/")) {
+        throw new Error("Image isn't a Pexels image, src: " + src);
+    }
+    const url = src.match(/(https:\/\/.*\.(?:jpe?g|png))/);
+    if (url === null) {
+        throw new Error("Image regex failed, src: " + src);
+    }
+
+    return `${url[0]}?auto=compress&cs=tinysrgb&w=${maxWidth}&q=${quality}`;
+}

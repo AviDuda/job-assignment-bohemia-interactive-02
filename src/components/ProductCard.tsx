@@ -4,7 +4,7 @@ import Image from "next/future/image";
 import { MinimalProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
 import { ModalContext } from "../context/ModalContext";
-import { getImageTitle } from "../utils";
+import { getImageTitle, getPexelsImageUrl } from "../utils";
 
 import Button from "./Button";
 
@@ -24,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <meta itemProp="height" content={product.height.toString()} />
             <div className="relative h-96 w-full" style={{ backgroundColor: `rgb(${product.main_color.join(", ")})` }}>
                 <Image
-                    src={product.image.medium}
+                    src={getPexelsImageUrl(product.image, (product.width / (product.height / 384)) * 2)}
                     alt={product.title}
                     title={getImageTitle(product)}
                     width={product.width / (product.height / 384)}

@@ -4,7 +4,7 @@ import Image from "next/future/image";
 import { MinimalProduct, StoreProduct } from "../apiTypes";
 import { CartContext } from "../context/CartContext";
 import { ModalContext } from "../context/ModalContext";
-import { getImageTitle } from "../utils";
+import { getImageTitle, getPexelsImageUrl } from "../utils";
 
 import Button from "./Button";
 
@@ -45,12 +45,12 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
             </div>
             <div className="relative mb-12 h-[553px] w-full">
                 <Image
-                    src={featured.image.large}
+                    src={getPexelsImageUrl(featured.image)}
                     alt={featured.title}
                     title={getImageTitle(featured)}
                     width={1536}
                     height={553}
-                    sizes="(max-width: 640px) 640px, (max-width: 1280px) 1280px, 90vw"
+                    sizes="(min-width: 1536px) 1536px, 100vw"
                     priority={true}
                     className="h-full w-full object-cover"
                     style={{ backgroundColor: `rgb(${featured.main_color.join(", ")})` }}
@@ -108,7 +108,7 @@ export default function FeaturedProduct({ featured, peopleAlsoBuy }: FeaturedPro
                                             </div>
                                             <div className="h-36 w-32">
                                                 <Image
-                                                    src={product.image.medium}
+                                                    src={getPexelsImageUrl(product.image, 128 * 2)}
                                                     alt={product.title}
                                                     title={getImageTitle(product)}
                                                     width={128}
